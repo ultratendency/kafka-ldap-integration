@@ -83,9 +83,10 @@ The result is kafka-plain-salserver-2-ad-2.0_<version>.jar hosting authenticatio
 
 ### Contact us
 #### Code/project related questions can be sent to 
-* Torstein Nesby, `torstein.nesby@nav.no`
-* Trong Huu Nguyen, `trong.huu.nguyen@nav.no`
 * Joe Schmetzer, `joe.schmetzer@instaclustr.com `
 * Zeke Dean, `zeke.dean@instaclustr.com`
+#### Credit to original authors
+* Torstein Nesby, `torstein.nesby@nav.no`
+* Trong Huu Nguyen, `trong.huu.nguyen@nav.no`
 
 For internal resources, send requests/questions to slack#kafka
