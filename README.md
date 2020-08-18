@@ -89,4 +89,4 @@ The result is kafka-plain-salserver-2-ad-2.0_<version>.jar hosting authenticatio
 * Torstein Nesby, `torstein.nesby@nav.no`
 * Trong Huu Nguyen, `trong.huu.nguyen@nav.no`
 
-For internal resources, send requests/questions to slack#kafka
+
