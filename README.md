@@ -1,8 +1,4 @@
-# kafka-plain-saslserver-2-ad 
-
-[![Build Status](https://travis-ci.org/navikt/kafka-plain-saslserver-2-ad.svg?branch=master)](https://travis-ci.org/navikt/kafka-plain-saslserver-2-ad/builds/)
-[![Docker Build Status](https://img.shields.io/docker/build/navikt/kafka-plain-saslserver-2-ad.svg)](https://hub.docker.com/r/navikt/kafka-plain-saslserver-2-ad/builds/)
-[![Docker Automated build](https://img.shields.io/docker/automated/navikt/kafka-plain-saslserver-2-ad.svg)](https://hub.docker.com/r/navikt/kafka-plain-saslserver-2-ad/)
+# kafka-ldap-integration 
 
 Enhancing kafka 2.x with
 - customized SimpleLDAPAuthentication using LDAPS simple bind for authentication
@@ -25,9 +21,9 @@ giving minor performance penalty and reduced LDAPS traffic.
 
 1. Unboundid LDAP SDK for LDAPS interaction
 2. Caffeine Cache
-3. YAML Configuration for LDAP baseDN for users, groups and more. See src/test/resources/ldapconfig.yaml for details
+3. YAML Configuration for LDAP baseDN for users, groups and more. See `src/test/resources/ldapconfig.yaml` for details
 
-**Observe** that the directory hosting yaml configuration file must be in CLASSPATH.
+**N.B.** that the directory hosting yaml configuration file must be in CLASSPATH.
 
 ## Kafka configuration examples
 
@@ -35,9 +31,9 @@ JAAS context file on Kafka broker use the standard class for plain login module 
 
 ```
 KafkaServer{
-org.apache.kafka.common.security.plain.PlainLoginModule required
-username="x"
-password="y";
+  org.apache.kafka.common.security.plain.PlainLoginModule required
+    username="x"
+    password="y";
 };
 ```
 
@@ -50,43 +46,38 @@ listeners=SASL_PLAINTEXT://localhost:9092
 security.inter.broker.protocol=SASL_PLAINTEXT
 sasl.mechanism.inter.broker.protocol=PLAIN
 sasl.enabled.mechanisms=PLAIN 
-
-listener.name.sasl_plaintext.plain.sasl.server.callback.handler.class=no.nav.common.security.authentication.SimpleLDAPAuthentication
-authorizer.class.name=no.nav.common.security.authorization.SimpleLDAPAuthorizer
+...
+listener.name.sasl_plaintext.plain.sasl.server.callback.handler.class=com.instaclustr.kafka.ldap.authentication.SimpleLDAPAuthentication
+authorizer.class.name=com.instaclustr.kafka.ldap.authorization.SimpleLDAPAuthorizer
 ...
 ```
-
-## Using the docker image
-The docker image can't currently be used standalone, the Dockerfile is supposed to be extended by adding the config file
-`/etc/kafka/ldapconfig.yaml` and the jaas configuration `/etc/kafka/kafka_server_jaas.conf`, examples of these 
-config files can be found in [NAVs kafka docker compose project](https://github.com/navikt/navkafka-docker-compose)
 
 ## Testing
 
 Use of Unboundid in-memory LDAP server for all test cases.
 
-Tested on confluent.io version 5.x (related to apache kafka 2.x)
+Tested on Kafka version 2.x
 
-See [Confluent Open Source distribution](https://www.confluent.io/product/confluent-open-source/) in order to test locally.
-
-The related [Wiki](https://github.com/navikt/KafkaPlainSaslServer2AD/wiki) has a detailed guide for local testing.
+See [Apache Kafka](https://kafka.apache.org/) in order to test locally.
 
 ## Build 
 
 ```
 ./gradlew clean build
 ./gradlew shadowJar
-
-The result is kafka-plain-salserver-2-ad-2.0_<version>.jar hosting authentication and authorization classes.
 ```
-**Observe** that the directory hosting the given JAR file must be in CLASSPATH.
+
+The result is `kafka-ldap-integration-2.4_<version>.jar` hosting authentication and authorization classes.
+
+**N.B.** that the directory hosting the given JAR file must be in CLASSPATH.
 
 ### Contact us
 #### Code/project related questions can be sent to 
 * Joe Schmetzer, `joe.schmetzer@instaclustr.com `
 * Zeke Dean, `zeke.dean@instaclustr.com`
+
 #### Credit to original authors
+
+Maintainers of the GitHub project [kafka-plain-saslserver-2-ad](https://github.com/navikt/kafka-plain-saslserver-2-ad):
 * Torstein Nesby, `torstein.nesby@nav.no`
 * Trong Huu Nguyen, `trong.huu.nguyen@nav.no`
-
-

@@ -1,16 +1,16 @@
 package com.instaclustr.kafka.ldap.authorization
 
+import com.instaclustr.kafka.ldap.common.InMemoryLDAPServer
+import com.instaclustr.kafka.ldap.common.JAASContext
 import kafka.security.auth.Acl
 import kafka.security.auth.Operation
 import kafka.security.auth.PermissionType
+import org.amshove.kluent.shouldEqualTo
 import org.apache.kafka.common.acl.AclOperation
 import org.apache.kafka.common.security.auth.KafkaPrincipal
-import com.instaclustr.kafka.ldap.common.InMemoryLDAPServer
-import com.instaclustr.kafka.ldap.common.JAASContext
-import org.amshove.kluent.shouldEqualTo
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
-import java.util.*
+import java.util.UUID
 
 object GroupAuthorizerSpec : Spek({
 
