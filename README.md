@@ -27,29 +27,27 @@ giving minor performance penalty and reduced LDAPS traffic.
 
 ## Kafka configuration examples
 
-JAAS context file on Kafka broker use the standard class for plain login module during authentication
-
-```
-KafkaServer{
-  org.apache.kafka.common.security.plain.PlainLoginModule required
-    username="x"
-    password="y";
-};
-```
-
 Example of Kafka server.properties for using the customized classes for authentication and authorization. The example
-focus on minimum configuration only (sasl plaintext). A production environment utilize plain with TLS.
+focus on minimum configuration only (sasl plaintext). A production environment should utilize plain with TLS.
 
-```
-...
+```properties
+# Configure inter-broker communication to use plaintext (Use SSL/TLS in Prod!)
 listeners=SASL_PLAINTEXT://localhost:9092
 security.inter.broker.protocol=SASL_PLAINTEXT
+
+# Configure brokers to exchange plain text username/password.
 sasl.mechanism.inter.broker.protocol=PLAIN
-sasl.enabled.mechanisms=PLAIN 
-...
+sasl.enabled.mechanisms=PLAIN
+
+# Configure the JAAS context for plain.
+# It is also possible to use an external JAAS file instead of this property
+listener.name.sasl_plaintext.plain.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="ldap-user" password="ldap-password";
+
+# Configure the authentication to use LDAP (verify that client is actually who they say they are)
 listener.name.sasl_plaintext.plain.sasl.server.callback.handler.class=com.instaclustr.kafka.ldap.authentication.SimpleLDAPAuthentication
+
+# Configure the authorization to use LDAP (verify that client is allowed to perform a specific action)
 authorizer.class.name=com.instaclustr.kafka.ldap.authorization.SimpleLDAPAuthorizer
-...
 ```
 
 ## Testing
@@ -63,13 +61,12 @@ See [Apache Kafka](https://kafka.apache.org/) in order to test locally.
 ## Build 
 
 ```
-./gradlew clean build
-./gradlew shadowJar
+./gradlew clean build shadowJar
 ```
 
-The result is `kafka-ldap-integration-2.4_<version>.jar` hosting authentication and authorization classes.
+The result is `build/libs/kafka-ldap-integration-<version>.jar`, which contains the authentication and authorization classes, along with all of their dependencies.
 
-**N.B.** that the directory hosting the given JAR file must be in CLASSPATH.
+**N.B.** This jar must be added to the classpath for the Kafka broker. The easist way to do that is to copy the jar into the directory `$KAFKA_HOME/libs`.
 
 ### Contact us
 #### Code/project related questions can be sent to 
