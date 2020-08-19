@@ -41,10 +41,14 @@ sasl.enabled.mechanisms=PLAIN
 
 # Configure the JAAS context for plain.
 # It is also possible to use an external JAAS file instead of this property
-listener.name.sasl_plaintext.plain.sasl.jaas.config=org.apache.kafka.common.security.plain.PlainLoginModule required username="ldap-user" password="ldap-password";
+listener.name.sasl_plaintext.plain.sasl.jaas.config=\
+  org.apache.kafka.common.security.plain.PlainLoginModule required \
+  username="ldap-user" \
+  password="ldap-password";
 
 # Configure the authentication to use LDAP (verify that client is actually who they say they are)
-listener.name.sasl_plaintext.plain.sasl.server.callback.handler.class=com.instaclustr.kafka.ldap.authentication.SimpleLDAPAuthentication
+listener.name.sasl_plaintext.plain.sasl.server.callback.handler.class=\
+  com.instaclustr.kafka.ldap.authentication.SimpleLDAPAuthentication
 
 # Configure the authorization to use LDAP (verify that client is allowed to perform a specific action)
 authorizer.class.name=com.instaclustr.kafka.ldap.authorization.SimpleLDAPAuthorizer
