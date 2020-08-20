@@ -25,42 +25,9 @@ giving minor performance penalty and reduced LDAPS traffic.
 
 **N.B.** that the directory hosting yaml configuration file must be in CLASSPATH.
 
-## Kafka configuration examples
+## Quickstart
 
-Example of Kafka server.properties for using the customized classes for authentication and authorization. The example
-focus on minimum configuration only (sasl plaintext). A production environment should utilize plain with TLS.
-
-```properties
-# Configure inter-broker communication to use plaintext (Use SSL/TLS in Prod!)
-listeners=SASL_PLAINTEXT://localhost:9092
-security.inter.broker.protocol=SASL_PLAINTEXT
-
-# Configure brokers to exchange plain text username/password.
-sasl.mechanism.inter.broker.protocol=PLAIN
-sasl.enabled.mechanisms=PLAIN
-
-# Configure the JAAS context for plain.
-# It is also possible to use an external JAAS file instead of this property
-listener.name.sasl_plaintext.plain.sasl.jaas.config=\
-  org.apache.kafka.common.security.plain.PlainLoginModule required \
-  username="ldap-user" \
-  password="ldap-password";
-
-# Configure the authentication to use LDAP (verify that client is actually who they say they are)
-listener.name.sasl_plaintext.plain.sasl.server.callback.handler.class=\
-  com.instaclustr.kafka.ldap.authentication.SimpleLDAPAuthentication
-
-# Configure the authorization to use LDAP (verify that client is allowed to perform a specific action)
-authorizer.class.name=com.instaclustr.kafka.ldap.authorization.SimpleLDAPAuthorizer
-```
-
-## Testing
-
-Use of Unboundid in-memory LDAP server for all test cases.
-
-Tested on Kafka version 2.x
-
-See [Apache Kafka](https://kafka.apache.org/) in order to test locally.
+A tutorial with configuration examples is available in the [User Guide](docs/index.md).
 
 ## Build 
 
