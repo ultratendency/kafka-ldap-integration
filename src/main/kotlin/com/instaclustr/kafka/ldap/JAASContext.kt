@@ -3,15 +3,13 @@ package com.instaclustr.kafka.ldap
 import org.slf4j.LoggerFactory
 
 /**
- * A singleton object for getting username and password from KafkaServer JAAS context
- * This object is only valid on kafka broker running PLAIN SASL
+ * A singleton object for holding jaas username and password credentials
  */
 
 object JAASContext {
 
     private val log = LoggerFactory.getLogger(JAASContext::class.java)
 
-    // extracting JAAS context from kafka server - prerequisite is  PLAINSASL context
     var username: String = ""
         get() {
             log.debug("JAASContext: get username '$field'")
