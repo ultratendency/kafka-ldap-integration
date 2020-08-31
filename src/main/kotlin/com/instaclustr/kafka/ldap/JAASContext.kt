@@ -12,25 +12,23 @@ object JAASContext {
     private val log = LoggerFactory.getLogger(JAASContext::class.java)
 
     // extracting JAAS context from kafka server - prerequisite is  PLAINSASL context
-    val username: String
-    val password: String
-
-    init {
-
-        log.info("Read JAAS Context for authorization support")
-
-        val options: Map<String, String> = try {
-            val jaasFile = javax.security.auth.login.Configuration.getConfiguration()
-            jaasFile.getAppConfigurationEntry("KafkaServer")
-                    ?.get(0)
-                    ?.options
-                    ?.map { kv -> Pair<String, String>(kv.key, kv.value.toString()) }?.toMap() ?: emptyMap()
-        } catch (e: SecurityException) {
-            log.error("JAAS Context read exception - ${e.message}")
-            emptyMap()
+    var username: String = ""
+        get() {
+            log.debug("JAASContext: get username '$field'")
+            return field
+        }
+        set(value) {
+            log.debug("JAASContext: set username '$value'")
+            field = value
         }
 
-        username = options["username"] ?: ""
-        password = options["password"] ?: ""
-    }
+    var password: String = ""
+        get() {
+            log.debug("JAASContext: get password called")
+            return field
+        }
+        set(value) {
+            log.debug("JAASContext: set password called")
+            field = value
+        }
 }

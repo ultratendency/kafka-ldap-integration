@@ -23,7 +23,6 @@ import org.slf4j.LoggerFactory
  */
 
 class SimpleLDAPAuthorizer : SimpleAclAuthorizer() {
-
     override fun authorize(session: RequestChannel.Session?, operation: Operation?, resource: Resource?): Boolean {
 
         // nothing to do if already authorized

@@ -1,7 +1,7 @@
 package com.instaclustr.kafka.ldap.authorization
 
+import com.instaclustr.kafka.ldap.JAASContext
 import com.instaclustr.kafka.ldap.common.InMemoryLDAPServer
-import com.instaclustr.kafka.ldap.common.JAASContext
 import kafka.security.auth.Acl
 import kafka.security.auth.Operation
 import kafka.security.auth.PermissionType
@@ -57,7 +57,8 @@ object GroupAuthorizerSpec : Spek({
     fun createKP(userName: String): KafkaPrincipal = KafkaPrincipal(KafkaPrincipal.USER_TYPE, userName)
 
     // set the JAAS config in order to do successful init of LDAPAuthorization
-    JAASContext.setUp()
+    JAASContext.username = "igroup"
+    JAASContext.password = "itest"
 
     describe("GroupAuthorizer class test specifications") {
 

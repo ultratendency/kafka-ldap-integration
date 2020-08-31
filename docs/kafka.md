@@ -39,6 +39,12 @@ security.inter.broker.protocol=SASL_PLAINTEXT
 sasl.mechanism.inter.broker.protocol=PLAIN
 sasl.enabled.mechanisms=PLAIN
 
+# Configure the JAAS context for plain.
+listener.name.sasl_plaintext.plain.sasl.jaas.config=\
+  org.apache.kafka.common.security.plain.PlainLoginModule required \
+  username="srvkafkabroker" \
+  password="broker";
+
 # Configure the authentication to use LDAP (verify that client is actually who they say they are)
 listener.name.sasl_plaintext.plain.sasl.server.callback.handler.class=\
   com.instaclustr.kafka.ldap.authentication.SimpleLDAPAuthentication
@@ -48,22 +54,6 @@ authorizer.class.name=com.instaclustr.kafka.ldap.authorization.SimpleLDAPAuthori
 
 # Configure super users
 super.users=User:srvkafkabroker
-```
-
-The JAAS configuration needs to be set up in an external config file. Open `$KAFKA_HOME/config/jaas.conf` in your editor, and copy in the following:
-
-```
-KafkaServer {
-    org.apache.kafka.common.security.plain.PlainLoginModule required
-    username="srvkafkabroker"
-    password="broker";
-};
-``` 
-
-Modify `$KAFKA_HOME/bin/kafka-server-start.sh`, and insert the following line at the end of the file, just before the exec:
-
-```shell script
-export KAFKA_OPTS=$"-Djava.security.auth.login.config=$base_dir/../config/jaas.conf"
 ```
 
 There needs to be a separate file containing the connection and configuration information for the LDAP authentication and authorization. This file must be available in the root of the classpath and called `ldapconfig.yaml`

@@ -1,10 +1,10 @@
 package com.instaclustr.kafka.ldap.authorization
 
+import com.instaclustr.kafka.ldap.JAASContext
 import com.instaclustr.kafka.ldap.LDAPConfig
 import com.instaclustr.kafka.ldap.common.LDAPCache
 import com.instaclustr.kafka.ldap.toUserDNNodes
 import com.instaclustr.kafka.ldap.common.InMemoryLDAPServer
-import com.instaclustr.kafka.ldap.common.JAASContext
 import org.amshove.kluent.shouldEqual
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
@@ -12,7 +12,8 @@ import org.spekframework.spek2.style.specification.describe
 object LDAPAuthorizationSpec : Spek({
 
     // set the JAAS config in order to do successful init of LDAPAuthorization
-    JAASContext.setUp()
+    JAASContext.username = "igroup"
+    JAASContext.password = "itest"
 
     describe("LDAPAuthorization class test specifications") {
 

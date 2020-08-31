@@ -1,5 +1,6 @@
 package com.instaclustr.kafka.ldap.authentication
 
+import com.instaclustr.kafka.ldap.JAASContext
 import com.instaclustr.kafka.ldap.Monitoring
 import com.instaclustr.kafka.ldap.common.LDAPCache
 import com.instaclustr.kafka.ldap.LDAPConfig
@@ -26,8 +27,6 @@ class SimpleLDAPAuthentication : AuthenticateCallbackHandler {
     init {
         log.debug("${SimpleLDAPAuthentication::class.java.canonicalName} object created")
     }
-
-    private var jaasConfigEntries: MutableList<AppConfigurationEntry> = mutableListOf()
 
     private inline fun <reified T> Array<out Callback>.getFirst(): T? = this.firstOrNull { it is T } as T
 
@@ -74,7 +73,17 @@ class SimpleLDAPAuthentication : AuthenticateCallbackHandler {
         saslMechanism: String?,
         jaasConfigEntries: MutableList<AppConfigurationEntry>?
     ) {
-        this.jaasConfigEntries = jaasConfigEntries ?: mutableListOf()
+        val jaasOptions = jaasConfigEntries?.get(0)?.options
+        JAASContext.username = optionValue(jaasOptions, "username")
+        JAASContext.password = optionValue(jaasOptions, "password")
+    }
+
+    private fun optionValue(jaasOptions: Map<String, *>?, option: String): String {
+        val maybeValue = jaasOptions?.get(option)
+        if (maybeValue is String) {
+            return maybeValue
+        }
+        return ""
     }
 
     override fun close() {}
