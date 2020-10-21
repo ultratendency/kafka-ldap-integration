@@ -35,6 +35,12 @@ A tutorial with configuration examples is available in the [User Guide](docs/ind
 ./gradlew clean build shadowJar
 ```
 
+#### Build without unit tests
+
+```
+./gradlew clean build shadowJar -x test
+```
+
 The result is `build/libs/kafka-ldap-integration-<version>.jar`, which contains the authentication and authorization classes, along with all of their dependencies.
 
 **N.B.** This jar must be added to the classpath for the Kafka broker. The easist way to do that is to copy the jar into the directory `$KAFKA_HOME/libs`.
