@@ -12,7 +12,7 @@ object LDAPConfigSpec : Spek({
                 "localhost",
                 11636,
                 500,
-                "ou=ApplAccounts,ou=ServiceAccounts,dc=test,dc=local",
+                "ou=ServiceAccounts,dc=test,dc=local",
                 "uid",
                 "ou=ServiceAccounts,dc=test,dc=local",
                 "uid",

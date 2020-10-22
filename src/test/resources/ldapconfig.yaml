@@ -6,7 +6,7 @@ port: 11636
 connTimeout: 500
 # adminDN is <adminUid>=<usr>,<adminBaseDN>
 # Placement of users in LDAP tree
-adminBaseDN: ou=ApplAccounts,ou=ServiceAccounts,dc=test,dc=local
+adminBaseDN: ou=ServiceAccounts,dc=test,dc=local
 # Admin user attribute for DN completion
 adminUid: uid
 # userDN is <usrUid>=<usr>,<usrBaseDN>

@@ -67,6 +67,10 @@ host: localhost
 port: 10636
 # connectionTimout in milliseconds for LDAP 
 connTimeout: 10000
+# Placement of admin user in LDAP tree
+adminBaseDN: ou=users,dc=security,dc=example,dc=com
+# Admin user attribute for DN completion
+adminUid: uid
 # Placement of users in LDAP tree
 usrBaseDN: ou=users,dc=security,dc=example,dc=com
 # User attribute for DN completion
