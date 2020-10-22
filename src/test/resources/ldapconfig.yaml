@@ -4,6 +4,11 @@ host: localhost
 port: 11636
 # connectionTimout in milliseconds for LDAP
 connTimeout: 500
+# adminDN is <adminUid>=<usr>,<adminBaseDN>
+# Placement of users in LDAP tree
+adminBaseDN: ou=ApplAccounts,ou=ServiceAccounts,dc=test,dc=local
+# Admin user attribute for DN completion
+adminUid: uid
 # userDN is <usrUid>=<usr>,<usrBaseDN>
 # Placement of users in LDAP tree
 usrBaseDN: ou=ServiceAccounts,dc=test,dc=local

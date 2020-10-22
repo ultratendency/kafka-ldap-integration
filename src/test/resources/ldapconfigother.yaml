@@ -4,6 +4,11 @@ host: host
 port: 11636
 # connectionTimout in milliseconds for LDAP
 connTimeout: 500
+# adminDN is <adminUid>=<usr>,<adminBaseDN>
+# Placement of users in LDAP tree
+adminBaseDN: adminbasedn
+# Admin user attribute for DN completion
+adminUid: adminuid
 # userDN is <usrUid>=<usr>,<usrBaseDN>
 # Placement of users in LDAP tree
 usrBaseDN: usrbasedn

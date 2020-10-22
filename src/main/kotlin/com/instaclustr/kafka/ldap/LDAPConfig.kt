@@ -25,6 +25,8 @@ object LDAPConfig {
         val host: String,
         val port: Int,
         val connTimeout: Int,
+        val adminBaseDN: String,
+        val adminUid: String,
         val usrBaseDN: String,
         val usrUid: String,
         val grpBaseDN: String,
@@ -39,6 +41,7 @@ object LDAPConfig {
 
     val emptyConfig = Config(
             "", 0, 0,
+            "", "",
             "", "",
             "", "", "",
             0, 0
@@ -114,6 +117,7 @@ object LDAPConfig {
 
 // A couple of extension functions for Config
 fun LDAPConfig.Config.toUserDN(user: String) = "$usrUid=$user,$usrBaseDN".toLowerCase()
+fun LDAPConfig.Config.toAdminDN(user: String) = "$adminUid=$user,$adminBaseDN".toLowerCase()
 
 // TODO: remove this method, no longer support applaccounts JFS 2010-10-22
 fun LDAPConfig.Config.toUserDNNodes(user: String) = listOf("$usrUid=$user,$usrBaseDN".toLowerCase())
