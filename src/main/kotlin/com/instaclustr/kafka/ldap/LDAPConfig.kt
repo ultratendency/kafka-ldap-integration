@@ -119,5 +119,4 @@ object LDAPConfig {
 fun LDAPConfig.Config.toUserDN(user: String) = "$usrUid=$user,$usrBaseDN".toLowerCase()
 fun LDAPConfig.Config.toAdminDN(user: String) = "$adminUid=$user,$adminBaseDN".toLowerCase()
 
-// TODO: remove this method, no longer support applaccounts JFS 2010-10-22
-fun LDAPConfig.Config.toUserDNNodes(user: String) = listOf("$usrUid=$user,$usrBaseDN".toLowerCase())
+fun LDAPConfig.Config.toUserDNNodes(user: String) = listOf(toUserDN(user), toAdminDN(user))
