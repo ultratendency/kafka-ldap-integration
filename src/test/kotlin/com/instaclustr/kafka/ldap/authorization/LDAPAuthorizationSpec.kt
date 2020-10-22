@@ -37,13 +37,8 @@ object LDAPAuthorizationSpec : Spek({
 
         val refUserGroup = mapOf(
                 Pair("srvc01", listOf("rmy-01")) to 1,
-                Pair("srvc02", listOf("rmy-02")) to 1,
                 Pair("srvp01", listOf("rmy-01", "rmy-02")) to 1,
-                Pair("srvp02", listOf("rmy-02", "rmy-01")) to 0,
-                Pair("srvp01", listOf("KC-tpc-02", "KP-tpc-02")) to 1,
-                Pair("srvc02", listOf("KC-tpc-02", "rmy-02")) to 2,
-                Pair("srvp02", listOf("KC-tpc-02", "rmy-02", "KP-tpc-03")) to 1,
-                Pair("srvc02", listOf("KC-tpc-02", "rmy-02", "KP-tpc-03")) to 2
+                Pair("srvp01", listOf("KC-tpc-02", "KP-tpc-02")) to 1
         )
 
         context("correct path to default YAML config") {

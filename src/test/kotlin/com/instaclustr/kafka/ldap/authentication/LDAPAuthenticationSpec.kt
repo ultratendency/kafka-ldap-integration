@@ -34,10 +34,7 @@ object LDAPAuthenticationSpec : Spek({
         val refUsers = mapOf(
                 Pair("srvp01", "srvp01") to true,
                 Pair("srvc01", "srvc01") to true,
-                Pair("srvp02", "srvp02") to true,
-                Pair("srvc02", "srvc02") to true,
                 Pair("srvp01", "invalidpwd") to false,
-                Pair("srvp02", "invalidpwd") to false,
                 Pair("invalid", "srvc01") to false
         )
 

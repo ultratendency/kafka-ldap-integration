@@ -36,10 +36,6 @@ object SimpleLDAPAuthenticationSpec : Spek({
                     arrayOf(
                             NameCallback("correct user and pwd", "srvp01"),
                             PlainAuthenticateCallback("srvp01".toCharArray())
-                    ) to true,
-                    arrayOf(
-                            NameCallback("correct user and pwd", "srvp02"),
-                            PlainAuthenticateCallback("srvp02".toCharArray())
                     ) to true
             )
 
