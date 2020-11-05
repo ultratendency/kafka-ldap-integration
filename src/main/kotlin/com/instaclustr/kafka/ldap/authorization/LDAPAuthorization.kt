@@ -81,18 +81,22 @@ class LDAPAuthorization private constructor(
                 emptyList()
             }
 
-    override fun isUserMemberOfAny(userDNs: List<String>, groups: List<String>): Set<AuthorResult> =
-            if (!connectionAndBindIsOk) {
-                log.error("${Monitoring.AUTHORIZATION_LDAP_FAILURE.txt} $userDNs membership in $groups ($uuid)")
-                emptySet()
-            } else
-                groups.flatMap { groupName ->
-                    val members = getGroupMembers(getGroupDN(groupName))
-                    log.debug("Group membership, intersection of $members and $userDNs ($uuid)")
-                    members.intersect(userDNs).map { uDN -> AuthorResult(groupName, uDN) }
-                }
-                        .also { result -> log.debug("Intersection result - $result ($uuid)") }
-                        .toSet()
+    override fun isUserMemberOfAny(userDNs: List<String>, groups: List<String>): Set<AuthorResult> {
+        if (!connectionAndBindIsOk) {
+            log.error("${Monitoring.AUTHORIZATION_LDAP_FAILURE.txt} $userDNs membership in $groups ($uuid)")
+            return emptySet()
+        }
+
+        val matching = groups.flatMap { groupName ->
+            val groupDN = getGroupDN(groupName)
+            val members = getGroupMembers(groupDN)
+            log.debug("Group $groupDN has members $members, checking for presence of $userDNs")
+            members.intersect(userDNs).map { uDN -> AuthorResult(groupName, uDN) }
+        }
+
+        log.debug("Checking $userDNs for membership in $groups, found: $matching")
+        return matching.toSet()
+    }
 
     companion object {
 
