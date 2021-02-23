@@ -87,6 +87,12 @@ usrCacheExpire: 6
 grpCacheExpire: 6
 ```
 
+## Make sure to add the YAML file to the classpath
+
+```
+export CLASSPATH=$CLASSPATH:/path_to_kafka//config"
+```
+
 ## Next Steps
 
 With the above configuration, you won't be able to start the broker until the LDAP Directory Server is up and running, with the correct configuration. Instructions on how to do this can be found here:

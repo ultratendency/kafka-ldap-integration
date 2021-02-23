@@ -90,11 +90,11 @@ class LDAPAuthorization private constructor(
         val matching = groups.flatMap { groupName ->
             val groupDN = getGroupDN(groupName)
             val members = getGroupMembers(groupDN)
-            log.debug("Group $groupDN has members $members, checking for presence of $userDNs")
+            log.info("Group $groupDN has members $members, checking for presence of $userDNs")
             members.intersect(userDNs).map { uDN -> AuthorResult(groupName, uDN) }
         }
 
-        log.debug("Checking $userDNs for membership in $groups, found: $matching")
+        log.info("Checking $userDNs for membership in $groups, found: $matching")
         return matching.toSet()
     }
 
