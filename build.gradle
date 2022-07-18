@@ -26,7 +26,6 @@ sourceCompatibility = 1.8
 test { useJUnitPlatform { includeEngines 'spek2' } }
 
 repositories {
-    maven { url "https://dl.bintray.com/spekframework/spek-dev" }
     jcenter()
     mavenCentral()
 }
