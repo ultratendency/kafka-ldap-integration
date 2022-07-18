@@ -1,5 +1,7 @@
 # kafka-ldap-integration 
 
+[![Gradle build](https://github.com/ultratendency/kafka-ldap-integration/actions/workflows/gradle.yml/badge.svg)](https://github.com/ultratendency/kafka-ldap-integration/actions/workflows/gradle.yml)
+
 Enhancing kafka 2.x with
 - customized SimpleLDAPAuthentication using LDAPS simple bind for authentication
 - customized SimpleACLAuthorizer using LDAPS compare-matched for group membership verification
