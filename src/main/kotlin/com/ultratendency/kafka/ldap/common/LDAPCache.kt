@@ -5,8 +5,8 @@ import com.github.benmanes.caffeine.cache.Caffeine
 import com.github.benmanes.caffeine.cache.LoadingCache
 import com.ultratendency.kafka.ldap.LDAPConfig
 import com.ultratendency.kafka.ldap.Monitoring
-import java.util.concurrent.TimeUnit
 import org.slf4j.LoggerFactory
+import java.util.concurrent.TimeUnit
 
 /**
  * A class using caffeine cache for 2 purposes

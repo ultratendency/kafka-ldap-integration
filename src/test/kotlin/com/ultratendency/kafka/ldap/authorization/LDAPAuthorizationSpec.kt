@@ -5,10 +5,10 @@ import com.ultratendency.kafka.ldap.LDAPConfig
 import com.ultratendency.kafka.ldap.common.InMemoryLDAPServer
 import com.ultratendency.kafka.ldap.common.LDAPCache
 import com.ultratendency.kafka.ldap.toUserDNNodes
-import java.util.UUID
 import org.amshove.kluent.shouldEqual
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
+import java.util.UUID
 
 object LDAPAuthorizationSpec : Spek({
 

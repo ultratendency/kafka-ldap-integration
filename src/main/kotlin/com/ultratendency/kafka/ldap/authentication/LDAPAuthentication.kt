@@ -1,10 +1,10 @@
 package com.ultratendency.kafka.ldap.authentication
 
-import com.unboundid.ldap.sdk.LDAPException
-import com.unboundid.ldap.sdk.ResultCode
 import com.ultratendency.kafka.ldap.LDAPConfig
 import com.ultratendency.kafka.ldap.Monitoring
 import com.ultratendency.kafka.ldap.common.LDAPBase
+import com.unboundid.ldap.sdk.LDAPException
+import com.unboundid.ldap.sdk.ResultCode
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -21,8 +21,7 @@ class LDAPAuthentication private constructor(val config: LDAPConfig.Config) : LD
                 AuthenResult(
                     false,
                     uDN,
-                    "LDAP bind unsuccessful for $uDN - " +
-                    "unknown situation :-("
+                    "LDAP bind unsuccessful for $uDN - unknown situation :-("
                 )
             }
         } catch (e: LDAPException) {

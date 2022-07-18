@@ -5,14 +5,14 @@ import com.ultratendency.kafka.ldap.LDAPConfig
 import com.ultratendency.kafka.ldap.Monitoring
 import com.ultratendency.kafka.ldap.common.LDAPCache
 import com.ultratendency.kafka.ldap.toUserDNNodes
+import org.apache.kafka.common.security.auth.AuthenticateCallbackHandler
+import org.apache.kafka.common.security.plain.PlainAuthenticateCallback
+import org.slf4j.LoggerFactory
 import java.io.IOException
 import javax.security.auth.callback.Callback
 import javax.security.auth.callback.NameCallback
 import javax.security.auth.callback.UnsupportedCallbackException
 import javax.security.auth.login.AppConfigurationEntry
-import org.apache.kafka.common.security.auth.AuthenticateCallbackHandler
-import org.apache.kafka.common.security.plain.PlainAuthenticateCallback
-import org.slf4j.LoggerFactory
 
 /**
  * A simple class for performing authentication

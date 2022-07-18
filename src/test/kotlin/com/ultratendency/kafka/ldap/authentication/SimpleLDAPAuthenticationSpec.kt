@@ -2,11 +2,11 @@ package com.ultratendency.kafka.ldap.authentication
 
 import com.ultratendency.kafka.ldap.common.InMemoryLDAPServer
 import com.ultratendency.kafka.ldap.common.LDAPCache
-import javax.security.auth.callback.NameCallback
 import org.amshove.kluent.shouldEqualTo
 import org.apache.kafka.common.security.plain.PlainAuthenticateCallback
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
+import javax.security.auth.callback.NameCallback
 
 object SimpleLDAPAuthenticationSpec : Spek({
 

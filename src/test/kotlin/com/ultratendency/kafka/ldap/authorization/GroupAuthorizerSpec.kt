@@ -2,7 +2,6 @@ package com.ultratendency.kafka.ldap.authorization
 
 import com.ultratendency.kafka.ldap.JAASContext
 import com.ultratendency.kafka.ldap.common.InMemoryLDAPServer
-import java.util.UUID
 import kafka.security.auth.Acl
 import kafka.security.auth.Operation
 import kafka.security.auth.PermissionType
@@ -11,6 +10,7 @@ import org.apache.kafka.common.acl.AclOperation
 import org.apache.kafka.common.security.auth.KafkaPrincipal
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
+import java.util.UUID
 
 object GroupAuthorizerSpec : Spek({
 

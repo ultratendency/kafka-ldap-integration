@@ -1,16 +1,16 @@
 package com.ultratendency.kafka.ldap.common
 
+import com.ultratendency.kafka.ldap.LDAPConfig
+import com.ultratendency.kafka.ldap.Monitoring
 import com.unboundid.ldap.sdk.DisconnectType
 import com.unboundid.ldap.sdk.LDAPConnection
 import com.unboundid.ldap.sdk.LDAPConnectionOptions
 import com.unboundid.ldap.sdk.LDAPException
 import com.unboundid.util.ssl.SSLUtil
 import com.unboundid.util.ssl.TrustAllTrustManager
-import com.ultratendency.kafka.ldap.LDAPConfig
-import com.ultratendency.kafka.ldap.Monitoring
-import kotlin.system.measureTimeMillis
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import kotlin.system.measureTimeMillis
 
 /**
  * A base class for LDAPAuthentication and LDAPAuthorization
