@@ -1,4 +1,6 @@
-# kafka-ldap-integration 
+# kafka-ldap-integration
+
+[![Gradle build](https://github.com/ultratendency/kafka-ldap-integration/actions/workflows/gradle.yml/badge.svg)](https://github.com/ultratendency/kafka-ldap-integration/actions/workflows/gradle.yml)
 
 Enhancing kafka 2.x with
 - customized SimpleLDAPAuthentication using LDAPS simple bind for authentication
@@ -6,7 +8,7 @@ Enhancing kafka 2.x with
 
 Thus, moving authentication from user and passwords in JAAS context file on kafka brokers to LDAP server
 
-By defining Read/Write allowance with LDAP groups, authorization is moved from 
+By defining Read/Write allowance with LDAP groups, authorization is moved from
 Zookeeper Access Control Lists to group membership verification.
 
 Binding and group membership information is cached (limited lifetime after write),
@@ -29,15 +31,15 @@ giving minor performance penalty and reduced LDAPS traffic.
 
 A tutorial with configuration examples is available in the [User Guide](docs/index.md).
 
-## Build 
+## Build
 
-```
+```shell
 ./gradlew clean build shadowJar
 ```
 
-#### Build without unit tests
+### Build without unit tests
 
-```
+```shell
 ./gradlew clean build shadowJar -x test
 ```
 
@@ -46,8 +48,8 @@ The result is `build/libs/kafka-ldap-integration-<version>.jar`, which contains 
 **N.B.** This jar must be added to the classpath for the Kafka broker. The easist way to do that is to copy the jar into the directory `$KAFKA_HOME/libs`.
 
 ### Contact us
-#### Code/project related questions can be sent to 
-* Joe Schmetzer, `joe.schmetzer@instaclustr.com `
+#### Code/project related questions can be sent to
+* Joe Schmetzer, `joe.schmetzer@instaclustr.com`
 * Zeke Dean, `zeke.dean@instaclustr.com`
 
 #### Credit to original authors
