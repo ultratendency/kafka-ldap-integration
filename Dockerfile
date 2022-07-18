@@ -1,4 +1,4 @@
-FROM openjdk:11-jdk
+FROM openjdk:18-jdk
 WORKDIR /kafka-plain-saslserver-2-ad
 COPY . .
 RUN ./gradlew build test
