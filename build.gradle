@@ -15,7 +15,7 @@ plugins {
     id 'org.jmailen.kotlinter' version '1.15.0'
     id 'maven-publish'
     id 'com.github.johnrengelman.shadow' version '4.0.3'
-    id 'com.github.ben-manes.versions' version '0.20.0'
+    id 'com.github.ben-manes.versions' version '0.42.0'
 }
 
 group 'com.ultratendency.kafka.ldap'
