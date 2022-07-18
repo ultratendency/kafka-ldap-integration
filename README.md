@@ -49,11 +49,12 @@ The result is `build/libs/kafka-ldap-integration-<version>.jar`, which contains 
 **N.B.** This jar must be added to the classpath for the Kafka broker. The easist way to do that is to copy the jar into the directory `$KAFKA_HOME/libs`.
 
 ### Contact us
-#### Code/project related questions can be sent to
-* Joe Schmetzer, `joe.schmetzer@instaclustr.com`
-* Zeke Dean, `zeke.dean@instaclustr.com`
 
 #### Credit to original authors
+
+Maintainers of the GitHub project [kafka-ldap-integration](https://github.com/instaclustr/kafka-ldap-integration):
+* Joe Schmetzer, `joe.schmetzer@instaclustr.com`
+* Zeke Dean, `zeke.dean@instaclustr.com`
 
 Maintainers of the GitHub project [kafka-plain-saslserver-2-ad](https://github.com/navikt/kafka-plain-saslserver-2-ad):
 * Torstein Nesby, `torstein.nesby@nav.no`
