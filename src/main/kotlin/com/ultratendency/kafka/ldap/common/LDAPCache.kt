@@ -1,10 +1,10 @@
-package com.instaclustr.kafka.ldap.common
+package com.ultratendency.kafka.ldap.common
 
 import com.github.benmanes.caffeine.cache.CacheLoader
 import com.github.benmanes.caffeine.cache.Caffeine
 import com.github.benmanes.caffeine.cache.LoadingCache
-import com.instaclustr.kafka.ldap.LDAPConfig
-import com.instaclustr.kafka.ldap.Monitoring
+import com.ultratendency.kafka.ldap.LDAPConfig
+import com.ultratendency.kafka.ldap.Monitoring
 import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
@@ -18,7 +18,6 @@ import java.util.concurrent.TimeUnit
  *
  * NO test cases for this simple class
  */
-
 object LDAPCache {
 
     private data class Bind(val name: String, val other: String)
@@ -39,18 +38,17 @@ object LDAPCache {
     private val log = LoggerFactory.getLogger(LDAPCache::class.java)
 
     init {
-
         val config = LDAPConfig.getByClasspath()
 
         bindCache = Caffeine.newBuilder()
-                .maximumSize(1_000)
-                .expireAfterWrite(config.usrCacheExpire.toLong(), TimeUnit.MINUTES)
-                .build(BindCacheLoader())
+            .maximumSize(1_000)
+            .expireAfterWrite(config.usrCacheExpire.toLong(), TimeUnit.MINUTES)
+            .build(BindCacheLoader())
 
         groupCache = Caffeine.newBuilder()
-                .maximumSize(10_000)
-                .expireAfterWrite(config.grpCacheExpire.toLong(), TimeUnit.MINUTES)
-                .build(GroupCacheLoader())
+            .maximumSize(10_000)
+            .expireAfterWrite(config.grpCacheExpire.toLong(), TimeUnit.MINUTES)
+            .build(GroupCacheLoader())
 
         log.info("Bind and group caches are initialized")
     }
@@ -66,8 +64,9 @@ object LDAPCache {
 
     fun userAdd(userDN: String, pwd: String): String =
         try {
-            (bindCache.get(Bind(userDN, pwd))?.other ?: "")
-                    .also { log.info("${Monitoring.AUTHENTICATION_CACHE_UPDATED.txt} for $userDN") }
+            (bindCache.get(Bind(userDN, pwd))?.other ?: "").also {
+                log.info("${Monitoring.AUTHENTICATION_CACHE_UPDATED.txt} for $userDN")
+            }
         } catch (e: java.util.concurrent.ExecutionException) {
             log.error("${Monitoring.AUTHENTICATION_CACHE_UPDATE_FAILED.txt} - ${e.cause}")
             ""
@@ -84,8 +83,12 @@ object LDAPCache {
 
     fun groupAndUserAdd(groupName: String, userDN: String, uuid: String): String =
         try {
-            (groupCache.get(Group(groupName, userDN))?.other ?: "")
-                    .also { log.info("${Monitoring.AUTHORIZATION_CACHE_UPDATED.txt} for [$groupName,$userDN] ($uuid)") }
+            (groupCache.get(Group(groupName, userDN))?.other ?: "").also {
+                log.info(
+                    "${Monitoring.AUTHORIZATION_CACHE_UPDATED.txt} for " +
+                        "[$groupName,$userDN] ($uuid)"
+                )
+            }
         } catch (e: java.util.concurrent.ExecutionException) {
             log.error("${Monitoring.AUTHORIZATION_CACHE_UPDATE_FAILED.txt} - ${e.cause}")
             ""
@@ -93,7 +96,11 @@ object LDAPCache {
 
     // for test purpose
 
-    fun invalidateAllBinds() = bindCache.invalidateAll().also { log.info("Bind cache reset") }
+    fun invalidateAllBinds() = bindCache.invalidateAll().also {
+        log.info("Bind cache reset")
+    }
 
-    fun invalidateAllGroups() = groupCache.invalidateAll().also { log.info("Group cachet reset") }
+    fun invalidateAllGroups() = groupCache.invalidateAll().also {
+        log.info("Group cachet reset")
+    }
 }

@@ -1,13 +1,14 @@
-package com.instaclustr.kafka.ldap.authorization
+package com.ultratendency.kafka.ldap.authorization
 
-import com.instaclustr.kafka.ldap.JAASContext
-import com.instaclustr.kafka.ldap.LDAPConfig
-import com.instaclustr.kafka.ldap.common.LDAPCache
-import com.instaclustr.kafka.ldap.toUserDNNodes
-import com.instaclustr.kafka.ldap.common.InMemoryLDAPServer
+import com.ultratendency.kafka.ldap.JAASContext
+import com.ultratendency.kafka.ldap.LDAPConfig
+import com.ultratendency.kafka.ldap.common.InMemoryLDAPServer
+import com.ultratendency.kafka.ldap.common.LDAPCache
+import com.ultratendency.kafka.ldap.toUserDNNodes
 import org.amshove.kluent.shouldEqual
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
+import java.util.UUID
 
 object LDAPAuthorizationSpec : Spek({
 
@@ -36,38 +37,39 @@ object LDAPAuthorizationSpec : Spek({
         }
 
         val refUserGroup = mapOf(
-                Pair("srvc01", listOf("rmy-01")) to 1,
-                Pair("srvp01", listOf("rmy-01", "rmy-02")) to 1,
-                Pair("srvp01", listOf("KC-tpc-02", "KP-tpc-02")) to 1
+            Pair("srvc01", listOf("rmy-01")) to 1,
+            Pair("srvp01", listOf("rmy-01", "rmy-02")) to 1,
+            Pair("srvp01", listOf("KC-tpc-02", "KP-tpc-02")) to 1
         )
 
         context("correct path to default YAML config") {
-
             refUserGroup.forEach { usrGrp, size ->
-
-                it("should return $size membership(s) for user ${usrGrp.first} in ${usrGrp.second}") {
-
+                it(
+                    "should return $size membership(s) for user ${usrGrp.first} in " +
+                        "${usrGrp.second}"
+                ) {
                     val src = "src/test/resources/ldapconfig.yaml"
                     val userDNs = LDAPConfig.getBySource(src).toUserDNNodes(usrGrp.first)
 
                     LDAPAuthorization.init(
-                            java.util.UUID.randomUUID().toString(),
-                            src)
-                            .isUserMemberOfAny(userDNs, usrGrp.second).size shouldEqual size
+                        UUID.randomUUID().toString(),
+                        src
+                    ).isUserMemberOfAny(userDNs, usrGrp.second).size shouldEqual size
                 }
             }
         }
 
         context("classpath to  YAML config") {
-
             refUserGroup.forEach { usrGrp, size ->
-
-                it("should return $size membership(s) for user ${usrGrp.first} in ${usrGrp.second}") {
+                it(
+                    "should return $size membership(s) for user ${usrGrp.first} in" +
+                        "${usrGrp.second}"
+                ) {
 
                     val userDNs = LDAPConfig.getByClasspath().toUserDNNodes(usrGrp.first)
 
-                    LDAPAuthorization.init(java.util.UUID.randomUUID().toString())
-                            .isUserMemberOfAny(userDNs, usrGrp.second).size shouldEqual size
+                    LDAPAuthorization.init(UUID.randomUUID().toString())
+                        .isUserMemberOfAny(userDNs, usrGrp.second).size shouldEqual size
                 }
             }
         }
