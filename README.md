@@ -1,6 +1,7 @@
 # kafka-ldap-integration
 
 [![Gradle build](https://github.com/ultratendency/kafka-ldap-integration/actions/workflows/gradle.yml/badge.svg)](https://github.com/ultratendency/kafka-ldap-integration/actions/workflows/gradle.yml)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ultratendency_kafka-ldap-integration&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ultratendency_kafka-ldap-integration)
 
 Enhancing kafka 2.x with
 - customized SimpleLDAPAuthentication using LDAPS simple bind for authentication
