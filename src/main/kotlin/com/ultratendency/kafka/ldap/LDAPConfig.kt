@@ -39,21 +39,20 @@ object LDAPConfig {
     private val cache: Config
 
     val emptyConfig = Config(
-            "", 0, 0,
-            "", "",
-            "", "",
-            "", "", "",
-            0, 0
+        "", 0, 0,
+        "", "",
+        "", "",
+        "", "", "",
+        0, 0
     )
 
     init {
         cache = try {
-            loadConfig(ClassLoader.getSystemResource("ldapconfig.yaml")
-                    ?: URL(""))
-                    .also {
-                        log.info("LDAPConfig for classpath is cached")
-                        log.info("ldap configuration values: $it")
-                    }
+            loadConfig(ClassLoader.getSystemResource("ldapconfig.yaml") ?: URL(""))
+                .also {
+                    log.info("LDAPConfig for classpath is cached")
+                    log.info("ldap configuration values: $it")
+                }
         } catch (e: Exception) {
             log.error("${e.message} - authentication and authorization will fail! ")
             emptyConfig
@@ -94,12 +93,12 @@ object LDAPConfig {
 
         return try {
             Files.newBufferedReader(filePath)
-                    .use {
-                        mapper.readValue(it, Config::class.java)
-                    }
-                    .also {
-                        log.info("$configFile read")
-                    }
+                .use {
+                    mapper.readValue(it, Config::class.java)
+                }
+                .also {
+                    log.info("$configFile read")
+                }
         } catch (e: java.io.IOException) {
             log.error(errMsg + e.message)
             emptyConfig

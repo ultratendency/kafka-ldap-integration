@@ -5,11 +5,11 @@ import com.ultratendency.kafka.ldap.LDAPConfig
 import com.ultratendency.kafka.ldap.Monitoring
 import com.ultratendency.kafka.ldap.common.LDAPBase
 import com.ultratendency.kafka.ldap.toAdminDN
-import com.unboundid.ldap.sdk.LDAPException
 import com.unboundid.ldap.sdk.Filter
+import com.unboundid.ldap.sdk.LDAPException
+import com.unboundid.ldap.sdk.LDAPSearchException
 import com.unboundid.ldap.sdk.SearchRequest
 import com.unboundid.ldap.sdk.SearchScope
-import com.unboundid.ldap.sdk.LDAPSearchException
 import kotlin.system.measureTimeMillis
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -36,8 +36,9 @@ class LDAPAuthorization private constructor(
 
     private fun doBind(userDN: String, pwd: String): Boolean =
         try {
-            log.debug("Binding information for authorization fetched from JAAS config file " +
-                "[$userDN]")
+            log.debug(
+                "Binding information for authorization fetched from JAAS config file [$userDN]"
+            )
             measureTimeMillis { ldapConnection.bind(userDN, pwd) }
                 .also {
                     log.debug("Successfully bind to (${config.host},${config.port}) with $userDN")
@@ -45,8 +46,10 @@ class LDAPAuthorization private constructor(
                 }
             true
         } catch (e: LDAPException) {
-            log.error("${Monitoring.AUTHORIZATION_BIND_FAILED.txt} $userDN to (${config.host}," +
-                "${config.port}) - ${e.diagnosticMessage}")
+            log.error(
+                "${Monitoring.AUTHORIZATION_BIND_FAILED.txt} $userDN to (${config.host}," +
+                "${config.port}) - ${e.diagnosticMessage}"
+            )
             false
         }
 
@@ -67,14 +70,18 @@ class LDAPAuthorization private constructor(
                     if (it.entryCount == 1)
                         it.searchEntries[0].dn
                     else {
-                        log.error("${Monitoring.AUTHORIZATION_SEARCH_MISS.txt} $groupName under " +
-                            "${config.grpBaseDN} ($uuid)")
+                        log.error(
+                            "${Monitoring.AUTHORIZATION_SEARCH_MISS.txt} $groupName under " +
+                            "${config.grpBaseDN} ($uuid)"
+                        )
                         ""
                     }
                 }
         } catch (e: LDAPSearchException) {
-            log.error("${Monitoring.AUTHORIZATION_SEARCH_FAILURE.txt} $groupName under " +
-                "${config.grpBaseDN} ($uuid)")
+            log.error(
+                "${Monitoring.AUTHORIZATION_SEARCH_FAILURE.txt} $groupName under " +
+                "${config.grpBaseDN} ($uuid)"
+            )
             ""
         }
 
@@ -87,15 +94,19 @@ class LDAPAuthorization private constructor(
             else
                 emptyList()
         } catch (e: LDAPException) {
-            log.error("${Monitoring.AUTHORIZATION_GROUP_FAILURE.txt} - ${config.grpAttrName} - " +
-                "for $groupDN ($uuid)")
+            log.error(
+                "${Monitoring.AUTHORIZATION_GROUP_FAILURE.txt} - ${config.grpAttrName} - " +
+                "for $groupDN ($uuid)"
+            )
             emptyList()
         }
 
     override fun isUserMemberOfAny(userDNs: List<String>, groups: List<String>): Set<AuthorResult> {
         if (!connectionAndBindIsOk) {
-            log.error("${Monitoring.AUTHORIZATION_LDAP_FAILURE.txt} $userDNs membership in " +
-                "$groups ($uuid)")
+            log.error(
+                "${Monitoring.AUTHORIZATION_LDAP_FAILURE.txt} $userDNs membership in " +
+                "$groups ($uuid)"
+            )
             return emptySet()
         }
 

@@ -1,9 +1,9 @@
 package com.ultratendency.kafka.ldap.authentication
 
 import com.ultratendency.kafka.ldap.JAASContext
+import com.ultratendency.kafka.ldap.LDAPConfig
 import com.ultratendency.kafka.ldap.Monitoring
 import com.ultratendency.kafka.ldap.common.LDAPCache
-import com.ultratendency.kafka.ldap.LDAPConfig
 import com.ultratendency.kafka.ldap.toUserDNNodes
 import java.io.IOException
 import javax.security.auth.callback.Callback
@@ -68,8 +68,9 @@ class SimpleLDAPAuthentication : AuthenticateCallbackHandler {
 
     private fun logAuthenticationResult(isAuthenticated: Boolean, username: String) {
         if (isAuthenticated) {
-            log.info("${Monitoring.AUTHENTICATION_SUCCESS.txt} - user=$username, " +
-                "status=authenticated")
+            log.info(
+                "${Monitoring.AUTHENTICATION_SUCCESS.txt} - user=$username, status=authenticated"
+            )
         } else {
             log.error("${Monitoring.AUTHENTICATION_FAILED.txt} - user=$username, status=denied")
         }

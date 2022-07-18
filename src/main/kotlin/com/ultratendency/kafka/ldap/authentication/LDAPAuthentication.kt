@@ -2,9 +2,9 @@ package com.ultratendency.kafka.ldap.authentication
 
 import com.unboundid.ldap.sdk.LDAPException
 import com.unboundid.ldap.sdk.ResultCode
+import com.ultratendency.kafka.ldap.LDAPConfig
 import com.ultratendency.kafka.ldap.Monitoring
 import com.ultratendency.kafka.ldap.common.LDAPBase
-import com.ultratendency.kafka.ldap.LDAPConfig
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
@@ -22,15 +22,16 @@ class LDAPAuthentication private constructor(val config: LDAPConfig.Config) : LD
                     "unknown situation :-(")
             }
         } catch (e: LDAPException) {
-            AuthenResult(false, uDN, "LDAP bind exception for $uDN - " +
-                e.diagnosticMessage
+            AuthenResult(
+                false, uDN, "LDAP bind exception for $uDN - ${e.diagnosticMessage}"
             )
         }
 
     override fun canUserAuthenticate(userDNs: List<String>, pwd: String): Set<AuthenResult> =
         if (!ldapConnection.isConnected) {
-            log.error("${Monitoring.AUTHENTICATION_LDAP_FAILURE.txt} $userDNs and related " +
-                "password!")
+            log.error(
+                "${Monitoring.AUTHENTICATION_LDAP_FAILURE.txt} $userDNs and related password!"
+            )
             emptySet()
         } else {
             log.debug("Trying bind for $userDNs and given password")

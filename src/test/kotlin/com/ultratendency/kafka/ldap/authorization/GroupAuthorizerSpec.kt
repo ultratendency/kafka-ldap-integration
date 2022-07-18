@@ -2,6 +2,7 @@ package com.ultratendency.kafka.ldap.authorization
 
 import com.ultratendency.kafka.ldap.JAASContext
 import com.ultratendency.kafka.ldap.common.InMemoryLDAPServer
+import java.util.UUID
 import kafka.security.auth.Acl
 import kafka.security.auth.Operation
 import kafka.security.auth.PermissionType
@@ -10,7 +11,6 @@ import org.apache.kafka.common.acl.AclOperation
 import org.apache.kafka.common.security.auth.KafkaPrincipal
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
-import java.util.UUID
 
 object GroupAuthorizerSpec : Spek({
 
@@ -92,8 +92,10 @@ object GroupAuthorizerSpec : Spek({
 
         context("describe allowance") {
             refUserDescribeACL.forEach { tr, result ->
-                it("should return $result for user ${tr.first} trying describe " +
-                    "on topic ${tr.third}") {
+                it(
+                    "should return $result for user ${tr.first} trying describe " +
+                    "on topic ${tr.third}"
+                ) {
                     GroupAuthorizer(UUID.randomUUID().toString())
                         .authorize(
                             createKP(tr.first),
@@ -105,8 +107,10 @@ object GroupAuthorizerSpec : Spek({
 
         context("write allowance") {
             refUserWriteACL.forEach { tr, result ->
-                it("should return $result for user ${tr.first} trying write on " +
-                    "topic ${tr.third}") {
+                it(
+                    "should return $result for user ${tr.first} trying write on " +
+                    "topic ${tr.third}"
+                ) {
                     GroupAuthorizer(UUID.randomUUID().toString())
                         .authorize(
                             createKP(tr.first),
@@ -118,8 +122,10 @@ object GroupAuthorizerSpec : Spek({
 
         context("read allowance") {
             refUserReadACL.forEach { tr, result ->
-                it("should return $result for user ${tr.first} trying read on " +
-                    "topic ${tr.third}") {
+                it(
+                    "should return $result for user ${tr.first} trying read on " +
+                    "topic ${tr.third}"
+                ) {
                     GroupAuthorizer(UUID.randomUUID().toString())
                         .authorize(
                             createKP(tr.first),

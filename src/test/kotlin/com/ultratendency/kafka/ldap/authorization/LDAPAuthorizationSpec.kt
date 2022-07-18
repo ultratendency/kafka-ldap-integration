@@ -5,10 +5,10 @@ import com.ultratendency.kafka.ldap.LDAPConfig
 import com.ultratendency.kafka.ldap.common.LDAPCache
 import com.ultratendency.kafka.ldap.toUserDNNodes
 import com.ultratendency.kafka.ldap.common.InMemoryLDAPServer
+import java.util.UUID
 import org.amshove.kluent.shouldEqual
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
-import java.util.UUID
 
 object LDAPAuthorizationSpec : Spek({
 
@@ -44,8 +44,10 @@ object LDAPAuthorizationSpec : Spek({
 
         context("correct path to default YAML config") {
             refUserGroup.forEach { usrGrp, size ->
-                it("should return $size membership(s) for " +
-                    "user ${usrGrp.first} in ${usrGrp.second}") {
+                it(
+                    "should return $size membership(s) for user ${usrGrp.first} in " +
+                        "${usrGrp.second}"
+                ) {
                     val src = "src/test/resources/ldapconfig.yaml"
                     val userDNs = LDAPConfig.getBySource(src).toUserDNNodes(usrGrp.first)
 
@@ -59,8 +61,10 @@ object LDAPAuthorizationSpec : Spek({
 
         context("classpath to  YAML config") {
             refUserGroup.forEach { usrGrp, size ->
-                it("should return $size membership(s) for " +
-                    "user ${usrGrp.first} in ${usrGrp.second}") {
+                it(
+                    "should return $size membership(s) for user ${usrGrp.first} in" +
+                        "${usrGrp.second}"
+                ) {
 
                     val userDNs = LDAPConfig.getByClasspath().toUserDNNodes(usrGrp.first)
 

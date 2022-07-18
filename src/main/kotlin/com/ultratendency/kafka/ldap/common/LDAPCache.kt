@@ -84,8 +84,10 @@ object LDAPCache {
     fun groupAndUserAdd(groupName: String, userDN: String, uuid: String): String =
         try {
             (groupCache.get(Group(groupName, userDN))?.other ?: "").also {
-                log.info("${Monitoring.AUTHORIZATION_CACHE_UPDATED.txt} for " +
-                    "[$groupName,$userDN] ($uuid)")
+                log.info(
+                    "${Monitoring.AUTHORIZATION_CACHE_UPDATED.txt} for " +
+                    "[$groupName,$userDN] ($uuid)"
+                )
             }
         } catch (e: java.util.concurrent.ExecutionException) {
             log.error("${Monitoring.AUTHORIZATION_CACHE_UPDATE_FAILED.txt} - ${e.cause}")

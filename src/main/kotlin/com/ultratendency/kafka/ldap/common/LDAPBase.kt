@@ -1,12 +1,12 @@
 package com.ultratendency.kafka.ldap.common
 
-import com.ultratendency.kafka.ldap.LDAPConfig
 import com.unboundid.ldap.sdk.LDAPConnectionOptions
 import com.unboundid.ldap.sdk.LDAPConnection
 import com.unboundid.ldap.sdk.LDAPException
 import com.unboundid.ldap.sdk.DisconnectType
 import com.unboundid.util.ssl.SSLUtil
 import com.unboundid.util.ssl.TrustAllTrustManager
+import com.ultratendency.kafka.ldap.LDAPConfig
 import com.ultratendency.kafka.ldap.Monitoring
 import kotlin.system.measureTimeMillis
 import org.slf4j.Logger
@@ -37,7 +37,8 @@ abstract class LDAPBase protected constructor(config: LDAPConfig.Config) : AutoC
                 log.info("${Monitoring.LDAP_BASE_TIME.txt} $it")
             }
         } catch (e: LDAPException) {
-            log.error("${Monitoring.LDAP_BASE_FAILURE.txt} (${config.host},${config.port}) - " +
+            log.error(
+                "${Monitoring.LDAP_BASE_FAILURE.txt} (${config.host},${config.port}) - " +
                 e.diagnosticMessage
             )
             ldapConnection.setDisconnectInfo(

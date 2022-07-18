@@ -64,13 +64,17 @@ class SimpleLDAPAuthorizer : SimpleAclAuthorizer() {
         val acls = mutableSetOf<Acl>()
         sacls.foreach { acls += it }
 
-        log.debug("$lOperation has following Allow ACLs for $lResource: " +
-            "${acls.map { it.principal().name }} uuid=$uuid")
+        log.debug(
+            "$lOperation has following Allow ACLs for $lResource: " +
+            "${acls.map { it.principal().name }} uuid=$uuid"
+        )
 
         // nothing to do if empty acl set
         if (acls.isEmpty()) {
-            log.error("${Monitoring.AUTHORIZATION_FAILED.txt} - $authContext, status=denied, " +
-                "reason=EMPTY_ALLOW_ACL")
+            log.error(
+                "${Monitoring.AUTHORIZATION_FAILED.txt} - $authContext, status=denied, " +
+                "reason=EMPTY_ALLOW_ACL"
+            )
             return false
         }
 
@@ -82,8 +86,9 @@ class SimpleLDAPAuthorizer : SimpleAclAuthorizer() {
 
         when (isAuthorized) {
             true -> log.debug("Authorization End - $authContext, status=authorized")
-            false -> log.error("${Monitoring.AUTHORIZATION_FAILED.txt} - $authContext, " +
-                "status=denied")
+            false -> log.error(
+                "${Monitoring.AUTHORIZATION_FAILED.txt} - $authContext, status=denied"
+            )
         }
 
         return isAuthorized
