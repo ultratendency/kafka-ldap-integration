@@ -1,9 +1,9 @@
 package com.ultratendency.kafka.ldap.common
 
-import com.unboundid.ldap.sdk.LDAPConnectionOptions
-import com.unboundid.ldap.sdk.LDAPConnection
-import com.unboundid.ldap.sdk.LDAPException
 import com.unboundid.ldap.sdk.DisconnectType
+import com.unboundid.ldap.sdk.LDAPConnection
+import com.unboundid.ldap.sdk.LDAPConnectionOptions
+import com.unboundid.ldap.sdk.LDAPException
 import com.unboundid.util.ssl.SSLUtil
 import com.unboundid.util.ssl.TrustAllTrustManager
 import com.ultratendency.kafka.ldap.LDAPConfig
@@ -39,7 +39,7 @@ abstract class LDAPBase protected constructor(config: LDAPConfig.Config) : AutoC
         } catch (e: LDAPException) {
             log.error(
                 "${Monitoring.LDAP_BASE_FAILURE.txt} (${config.host},${config.port}) - " +
-                e.diagnosticMessage
+                    e.diagnosticMessage
             )
             ldapConnection.setDisconnectInfo(
                 DisconnectType.IO_ERROR,

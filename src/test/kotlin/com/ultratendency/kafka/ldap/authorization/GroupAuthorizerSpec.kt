@@ -94,7 +94,7 @@ object GroupAuthorizerSpec : Spek({
             refUserDescribeACL.forEach { tr, result ->
                 it(
                     "should return $result for user ${tr.first} trying describe " +
-                    "on topic ${tr.third}"
+                        "on topic ${tr.third}"
                 ) {
                     GroupAuthorizer(UUID.randomUUID().toString())
                         .authorize(
@@ -109,7 +109,7 @@ object GroupAuthorizerSpec : Spek({
             refUserWriteACL.forEach { tr, result ->
                 it(
                     "should return $result for user ${tr.first} trying write on " +
-                    "topic ${tr.third}"
+                        "topic ${tr.third}"
                 ) {
                     GroupAuthorizer(UUID.randomUUID().toString())
                         .authorize(
@@ -124,7 +124,7 @@ object GroupAuthorizerSpec : Spek({
             refUserReadACL.forEach { tr, result ->
                 it(
                     "should return $result for user ${tr.first} trying read on " +
-                    "topic ${tr.third}"
+                        "topic ${tr.third}"
                 ) {
                     GroupAuthorizer(UUID.randomUUID().toString())
                         .authorize(

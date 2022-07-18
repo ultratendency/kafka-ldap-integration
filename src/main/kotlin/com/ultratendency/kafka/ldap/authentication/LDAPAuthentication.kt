@@ -18,8 +18,12 @@ class LDAPAuthentication private constructor(val config: LDAPConfig.Config) : LD
             if (ldapConnection.bind(uDN, pwd).resultCode == ResultCode.SUCCESS)
                 AuthenResult(true, uDN, "")
             else {
-                AuthenResult(false, uDN, "LDAP bind unsuccessful for $uDN - " +
-                    "unknown situation :-(")
+                AuthenResult(
+                    false,
+                    uDN,
+                    "LDAP bind unsuccessful for $uDN - " +
+                    "unknown situation :-("
+                )
             }
         } catch (e: LDAPException) {
             AuthenResult(

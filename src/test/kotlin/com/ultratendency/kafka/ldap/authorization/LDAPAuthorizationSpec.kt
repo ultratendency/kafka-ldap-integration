@@ -2,9 +2,9 @@ package com.ultratendency.kafka.ldap.authorization
 
 import com.ultratendency.kafka.ldap.JAASContext
 import com.ultratendency.kafka.ldap.LDAPConfig
+import com.ultratendency.kafka.ldap.common.InMemoryLDAPServer
 import com.ultratendency.kafka.ldap.common.LDAPCache
 import com.ultratendency.kafka.ldap.toUserDNNodes
-import com.ultratendency.kafka.ldap.common.InMemoryLDAPServer
 import java.util.UUID
 import org.amshove.kluent.shouldEqual
 import org.spekframework.spek2.Spek

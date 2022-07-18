@@ -66,14 +66,14 @@ class SimpleLDAPAuthorizer : SimpleAclAuthorizer() {
 
         log.debug(
             "$lOperation has following Allow ACLs for $lResource: " +
-            "${acls.map { it.principal().name }} uuid=$uuid"
+                "${acls.map { it.principal().name }} uuid=$uuid"
         )
 
         // nothing to do if empty acl set
         if (acls.isEmpty()) {
             log.error(
                 "${Monitoring.AUTHORIZATION_FAILED.txt} - $authContext, status=denied, " +
-                "reason=EMPTY_ALLOW_ACL"
+                    "reason=EMPTY_ALLOW_ACL"
             )
             return false
         }

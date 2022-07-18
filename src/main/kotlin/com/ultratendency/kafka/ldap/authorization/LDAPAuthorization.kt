@@ -48,7 +48,7 @@ class LDAPAuthorization private constructor(
         } catch (e: LDAPException) {
             log.error(
                 "${Monitoring.AUTHORIZATION_BIND_FAILED.txt} $userDN to (${config.host}," +
-                "${config.port}) - ${e.diagnosticMessage}"
+                    "${config.port}) - ${e.diagnosticMessage}"
             )
             false
         }
@@ -72,7 +72,7 @@ class LDAPAuthorization private constructor(
                     else {
                         log.error(
                             "${Monitoring.AUTHORIZATION_SEARCH_MISS.txt} $groupName under " +
-                            "${config.grpBaseDN} ($uuid)"
+                                "${config.grpBaseDN} ($uuid)"
                         )
                         ""
                     }
@@ -80,7 +80,7 @@ class LDAPAuthorization private constructor(
         } catch (e: LDAPSearchException) {
             log.error(
                 "${Monitoring.AUTHORIZATION_SEARCH_FAILURE.txt} $groupName under " +
-                "${config.grpBaseDN} ($uuid)"
+                    "${config.grpBaseDN} ($uuid)"
             )
             ""
         }
@@ -96,7 +96,7 @@ class LDAPAuthorization private constructor(
         } catch (e: LDAPException) {
             log.error(
                 "${Monitoring.AUTHORIZATION_GROUP_FAILURE.txt} - ${config.grpAttrName} - " +
-                "for $groupDN ($uuid)"
+                    "for $groupDN ($uuid)"
             )
             emptyList()
         }
@@ -105,7 +105,7 @@ class LDAPAuthorization private constructor(
         if (!connectionAndBindIsOk) {
             log.error(
                 "${Monitoring.AUTHORIZATION_LDAP_FAILURE.txt} $userDNs membership in " +
-                "$groups ($uuid)"
+                    "$groups ($uuid)"
             )
             return emptySet()
         }

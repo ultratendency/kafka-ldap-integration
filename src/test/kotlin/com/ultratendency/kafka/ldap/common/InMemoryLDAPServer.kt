@@ -14,7 +14,8 @@ import org.slf4j.LoggerFactory
 /**
  * An object creating a in-memory LDAP server
  * - using LDAPS
- * - not allowing anonymous access to some operations(compare, search,add,modify, delete), thus, must bind first
+ * - not allowing anonymous access to some operations(compare, search,add,modify, delete), thus,
+ *      must bind first
  * - a baseDN that is enriched with resource/UserAndGroups2.ldif
  * - start and stop functions to be used before/after test cases
  */
@@ -53,7 +54,8 @@ object InMemoryLDAPServer {
                 OperationType.MODIFY,
                 OperationType.DELETE
             )
-            // let the embedded server use identical schema as apache DS configured for AD support (group and sAMAcc..)
+            // let the embedded server use identical schema as apache DS configured for AD support
+            // (group and sAMAcc..)
             schema = Schema.getSchema("src/test/resources/apacheDS.ldif")
         } catch (e: Exception) {
             log.error("$e")
