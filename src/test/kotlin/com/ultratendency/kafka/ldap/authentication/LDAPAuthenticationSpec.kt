@@ -1,9 +1,9 @@
 package com.ultratendency.kafka.ldap.authentication
 
 import com.ultratendency.kafka.ldap.LDAPConfig
+import com.ultratendency.kafka.ldap.common.InMemoryLDAPServer
 import com.ultratendency.kafka.ldap.common.LDAPCache
 import com.ultratendency.kafka.ldap.toUserDNNodes
-import com.ultratendency.kafka.ldap.common.InMemoryLDAPServer
 import org.amshove.kluent.shouldEqual
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
@@ -32,37 +32,31 @@ object LDAPAuthenticationSpec : Spek({
         // users from both nodes, ServiceAccounts and ApplAccounts
 
         val refUsers = mapOf(
-                Pair("srvp01", "srvp01") to true,
-                Pair("srvc01", "srvc01") to true,
-                Pair("srvp01", "invalidpwd") to false,
-                Pair("invalid", "srvc01") to false
+            Pair("srvp01", "srvp01") to true,
+            Pair("srvc01", "srvc01") to true,
+            Pair("srvp01", "invalidpwd") to false,
+            Pair("invalid", "srvc01") to false
         )
 
         context("correct path to default YAML config") {
-
             refUsers.forEach { user, result ->
-
                 it("should return $result for user ${user.first} with pwd ${user.second}") {
-
                     val src = "src/test/resources/ldapconfig.yaml"
                     val userDNs = LDAPConfig.getBySource(src).toUserDNNodes(user.first)
 
                     LDAPAuthentication.init(src)
-                            .canUserAuthenticate(userDNs, user.second).isNotEmpty() shouldEqual result
+                        .canUserAuthenticate(userDNs, user.second).isNotEmpty() shouldEqual result
                 }
             }
         }
 
         context("classpath to YAML config") {
-
             refUsers.forEach { user, result ->
-
                 it("should return $result for user ${user.first} with pwd ${user.second}") {
-
                     val userDNs = LDAPConfig.getByClasspath().toUserDNNodes(user.first)
 
                     LDAPAuthentication.init()
-                            .canUserAuthenticate(userDNs, user.second).isNotEmpty() shouldEqual result
+                        .canUserAuthenticate(userDNs, user.second).isNotEmpty() shouldEqual result
                 }
             }
         }

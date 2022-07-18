@@ -3,12 +3,12 @@ package com.ultratendency.kafka.ldap
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
 import com.fasterxml.jackson.module.kotlin.KotlinModule
-import org.slf4j.LoggerFactory
 import java.lang.IllegalArgumentException
 import java.net.URL
 import java.nio.file.FileSystemNotFoundException
 import java.nio.file.Files
 import java.nio.file.Paths
+import org.slf4j.LoggerFactory
 
 /**
  * A singleton class returning a data class for all config parameters
@@ -18,7 +18,6 @@ import java.nio.file.Paths
  *
  * See test/resources/adconfig.yaml for 1:1 mapping between YAML and data class
  */
-
 object LDAPConfig {
 
     data class Config(
@@ -69,7 +68,6 @@ object LDAPConfig {
     fun getByClasspath(): Config = cache
 
     private fun loadConfig(configFile: URL): Config {
-
         val mapper = ObjectMapper(YAMLFactory())
 
         mapper.registerModule(KotlinModule()) // Enable Kotlin and data class support

@@ -37,39 +37,35 @@ object LDAPAuthorizationSpec : Spek({
         }
 
         val refUserGroup = mapOf(
-                Pair("srvc01", listOf("rmy-01")) to 1,
-                Pair("srvp01", listOf("rmy-01", "rmy-02")) to 1,
-                Pair("srvp01", listOf("KC-tpc-02", "KP-tpc-02")) to 1
+            Pair("srvc01", listOf("rmy-01")) to 1,
+            Pair("srvp01", listOf("rmy-01", "rmy-02")) to 1,
+            Pair("srvp01", listOf("KC-tpc-02", "KP-tpc-02")) to 1
         )
 
         context("correct path to default YAML config") {
-
             refUserGroup.forEach { usrGrp, size ->
-
-                it("should return $size membership(s) for user ${usrGrp.first} in ${usrGrp.second}") {
-
+                it("should return $size membership(s) for " +
+                    "user ${usrGrp.first} in ${usrGrp.second}") {
                     val src = "src/test/resources/ldapconfig.yaml"
                     val userDNs = LDAPConfig.getBySource(src).toUserDNNodes(usrGrp.first)
 
                     LDAPAuthorization.init(
                         UUID.randomUUID().toString(),
                         src
-                    )
-                            .isUserMemberOfAny(userDNs, usrGrp.second).size shouldEqual size
+                    ).isUserMemberOfAny(userDNs, usrGrp.second).size shouldEqual size
                 }
             }
         }
 
         context("classpath to  YAML config") {
-
             refUserGroup.forEach { usrGrp, size ->
-
-                it("should return $size membership(s) for user ${usrGrp.first} in ${usrGrp.second}") {
+                it("should return $size membership(s) for " +
+                    "user ${usrGrp.first} in ${usrGrp.second}") {
 
                     val userDNs = LDAPConfig.getByClasspath().toUserDNNodes(usrGrp.first)
 
                     LDAPAuthorization.init(UUID.randomUUID().toString())
-                            .isUserMemberOfAny(userDNs, usrGrp.second).size shouldEqual size
+                        .isUserMemberOfAny(userDNs, usrGrp.second).size shouldEqual size
                 }
             }
         }

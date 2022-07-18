@@ -21,33 +21,32 @@ object SimpleLDAPAuthenticationSpec : Spek({
 
             // kind of misuse of the prompt field in NameCallback... Ok in test context
             val tests = mapOf(
-                    arrayOf(
-                            NameCallback("invalid user and pwd", "dontexist"),
-                            PlainAuthenticateCallback("wrong".toCharArray())
-                    ) to false,
-                    arrayOf(
-                            NameCallback("correct user and pwd", "igroup"),
-                            PlainAuthenticateCallback("itest".toCharArray())
-                    ) to true,
-                    arrayOf(
-                            NameCallback("correct user and invalid pwd", "igroup"),
-                            PlainAuthenticateCallback("wrong".toCharArray())
-                    ) to false,
-                    arrayOf(
-                            NameCallback("correct user and pwd", "srvp01"),
-                            PlainAuthenticateCallback("srvp01".toCharArray())
-                    ) to true
+                arrayOf(
+                    NameCallback("invalid user and pwd", "dontexist"),
+                    PlainAuthenticateCallback("wrong".toCharArray())
+                ) to false,
+                arrayOf(
+                    NameCallback("correct user and pwd", "igroup"),
+                    PlainAuthenticateCallback("itest".toCharArray())
+                ) to true,
+                arrayOf(
+                    NameCallback("correct user and invalid pwd", "igroup"),
+                    PlainAuthenticateCallback("wrong".toCharArray())
+                ) to false,
+                arrayOf(
+                    NameCallback("correct user and pwd", "srvp01"),
+                    PlainAuthenticateCallback("srvp01".toCharArray())
+                ) to true
             )
 
             tests.forEach { callbacks, result ->
-
                 val user = (callbacks.first() as NameCallback).defaultName
                 val pwd = (callbacks.last() as PlainAuthenticateCallback).password()
 
                 it("should for $user with $pwd return $result") {
-
                     SimpleLDAPAuthentication().handle(callbacks)
-                    (callbacks.last() as PlainAuthenticateCallback).authenticated() shouldEqualTo result
+                    (callbacks.last() as PlainAuthenticateCallback).authenticated() shouldEqualTo
+                        result
                 }
             }
         }
