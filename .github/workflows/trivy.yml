@@ -32,7 +32,7 @@ jobs:
         uses: aquasecurity/trivy-action@0.5.1
         with:
           scan-type: 'fs'
-          format: 'table'
+          format: 'sarif'
           exit-code: '1'
           output: 'trivy-results.sarif'
 
