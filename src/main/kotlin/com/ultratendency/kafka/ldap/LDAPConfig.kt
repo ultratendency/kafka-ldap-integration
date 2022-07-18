@@ -1,4 +1,4 @@
-package com.instaclustr.kafka.ldap
+package com.ultratendency.kafka.ldap
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
@@ -18,7 +18,6 @@ import java.nio.file.Paths
  *
  * See test/resources/adconfig.yaml for 1:1 mapping between YAML and data class
  */
-
 object LDAPConfig {
 
     data class Config(
@@ -40,21 +39,20 @@ object LDAPConfig {
     private val cache: Config
 
     val emptyConfig = Config(
-            "", 0, 0,
-            "", "",
-            "", "",
-            "", "", "",
-            0, 0
+        "", 0, 0,
+        "", "",
+        "", "",
+        "", "", "",
+        0, 0
     )
 
     init {
         cache = try {
-            loadConfig(ClassLoader.getSystemResource("ldapconfig.yaml")
-                    ?: URL(""))
-                    .also {
-                        log.info("LDAPConfig for classpath is cached")
-                        log.info("ldap configuration values: $it")
-                    }
+            loadConfig(ClassLoader.getSystemResource("ldapconfig.yaml") ?: URL(""))
+                .also {
+                    log.info("LDAPConfig for classpath is cached")
+                    log.info("ldap configuration values: $it")
+                }
         } catch (e: Exception) {
             log.error("${e.message} - authentication and authorization will fail! ")
             emptyConfig
@@ -69,7 +67,6 @@ object LDAPConfig {
     fun getByClasspath(): Config = cache
 
     private fun loadConfig(configFile: URL): Config {
-
         val mapper = ObjectMapper(YAMLFactory())
 
         mapper.registerModule(KotlinModule()) // Enable Kotlin and data class support
@@ -96,12 +93,12 @@ object LDAPConfig {
 
         return try {
             Files.newBufferedReader(filePath)
-                    .use {
-                        mapper.readValue(it, Config::class.java)
-                    }
-                    .also {
-                        log.info("$configFile read")
-                    }
+                .use {
+                    mapper.readValue(it, Config::class.java)
+                }
+                .also {
+                    log.info("$configFile read")
+                }
         } catch (e: java.io.IOException) {
             log.error(errMsg + e.message)
             emptyConfig

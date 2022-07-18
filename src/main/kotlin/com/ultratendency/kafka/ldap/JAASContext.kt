@@ -1,13 +1,11 @@
-package com.instaclustr.kafka.ldap
+package com.ultratendency.kafka.ldap
 
 import org.slf4j.LoggerFactory
 
 /**
  * A singleton object for holding jaas username and password credentials
  */
-
 object JAASContext {
-
     private val log = LoggerFactory.getLogger(JAASContext::class.java)
 
     var username: String = ""

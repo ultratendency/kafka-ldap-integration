@@ -1,4 +1,4 @@
-package com.instaclustr.kafka.ldap
+package com.ultratendency.kafka.ldap
 
 /**
  * Monitoring reflects utilization of log messages in kibana, in visualize components

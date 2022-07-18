@@ -1,13 +1,13 @@
-package com.instaclustr.kafka.ldap.common
+package com.ultratendency.kafka.ldap.common
 
-import com.instaclustr.kafka.ldap.LDAPConfig
-import com.unboundid.ldap.sdk.LDAPConnectionOptions
-import com.unboundid.ldap.sdk.LDAPConnection
-import com.unboundid.ldap.sdk.LDAPException
+import com.ultratendency.kafka.ldap.LDAPConfig
+import com.ultratendency.kafka.ldap.Monitoring
 import com.unboundid.ldap.sdk.DisconnectType
+import com.unboundid.ldap.sdk.LDAPConnection
+import com.unboundid.ldap.sdk.LDAPConnectionOptions
+import com.unboundid.ldap.sdk.LDAPException
 import com.unboundid.util.ssl.SSLUtil
 import com.unboundid.util.ssl.TrustAllTrustManager
-import com.instaclustr.kafka.ldap.Monitoring
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import kotlin.system.measureTimeMillis
@@ -15,7 +15,6 @@ import kotlin.system.measureTimeMillis
 /**
  * A base class for LDAPAuthentication and LDAPAuthorization
  */
-
 abstract class LDAPBase protected constructor(config: LDAPConfig.Config) : AutoCloseable {
 
     private val connectOptions = LDAPConnectionOptions().apply {
@@ -24,22 +23,28 @@ abstract class LDAPBase protected constructor(config: LDAPConfig.Config) : AutoC
 
     // NB! - TrustAllTrustManager is too trusty, but good enough when inside corporate inner zone
     protected val ldapConnection = LDAPConnection(
-            SSLUtil(TrustAllTrustManager()).createSSLSocketFactory(),
-            connectOptions)
+        SSLUtil(TrustAllTrustManager()).createSSLSocketFactory(),
+        connectOptions
+    )
 
     init {
         // initialize LDAP connection
         try {
-            measureTimeMillis { ldapConnection.connect(config.host, config.port) }
-                    .also {
-                        log.debug("Successfully connected to (${config.host},${config.port})")
-                        log.info("${Monitoring.LDAP_BASE_TIME.txt} $it")
-                    }
+            measureTimeMillis {
+                ldapConnection.connect(config.host, config.port)
+            }.also {
+                log.debug("Successfully connected to (${config.host},${config.port})")
+                log.info("${Monitoring.LDAP_BASE_TIME.txt} $it")
+            }
         } catch (e: LDAPException) {
-            log.error("${Monitoring.LDAP_BASE_FAILURE.txt} (${config.host},${config.port}) - ${e.diagnosticMessage}")
+            log.error(
+                "${Monitoring.LDAP_BASE_FAILURE.txt} (${config.host},${config.port}) - " +
+                    e.diagnosticMessage
+            )
             ldapConnection.setDisconnectInfo(
-                    DisconnectType.IO_ERROR,
-                    "Exception when connecting to LDAP(${config.host},${config.port})", e)
+                DisconnectType.IO_ERROR,
+                "Exception when connecting to LDAP(${config.host},${config.port})", e
+            )
         }
     }
 
@@ -54,10 +59,10 @@ abstract class LDAPBase protected constructor(config: LDAPConfig.Config) : AutoC
 
     data class AuthorResult(val groupName: String, val userDN: String)
 
-    open fun isUserMemberOfAny(userDNs: List<String>, groups: List<String>): Set<AuthorResult> = emptySet()
+    open fun isUserMemberOfAny(userDNs: List<String>, groups: List<String>): Set<AuthorResult> =
+        emptySet()
 
     companion object {
-
         private val log: Logger = LoggerFactory.getLogger(LDAPBase::class.java)
     }
 }
