@@ -1,4 +1,4 @@
-package com.instaclustr.kafka.ldap.common
+package com.ultratendency.kafka.ldap.common
 
 import com.unboundid.ldap.listener.InMemoryDirectoryServer
 import com.unboundid.ldap.listener.InMemoryDirectoryServerConfig

@@ -1,10 +1,10 @@
-package com.instaclustr.kafka.ldap.authentication
+package com.ultratendency.kafka.ldap.authentication
 
-import com.instaclustr.kafka.ldap.JAASContext
-import com.instaclustr.kafka.ldap.Monitoring
-import com.instaclustr.kafka.ldap.common.LDAPCache
-import com.instaclustr.kafka.ldap.LDAPConfig
-import com.instaclustr.kafka.ldap.toUserDNNodes
+import com.ultratendency.kafka.ldap.JAASContext
+import com.ultratendency.kafka.ldap.Monitoring
+import com.ultratendency.kafka.ldap.common.LDAPCache
+import com.ultratendency.kafka.ldap.LDAPConfig
+import com.ultratendency.kafka.ldap.toUserDNNodes
 import org.apache.kafka.common.security.auth.AuthenticateCallbackHandler
 import org.apache.kafka.common.security.plain.PlainAuthenticateCallback
 import org.slf4j.LoggerFactory

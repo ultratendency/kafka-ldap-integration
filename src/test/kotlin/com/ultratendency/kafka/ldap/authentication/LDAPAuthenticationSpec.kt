@@ -1,9 +1,9 @@
-package com.instaclustr.kafka.ldap.authentication
+package com.ultratendency.kafka.ldap.authentication
 
-import com.instaclustr.kafka.ldap.LDAPConfig
-import com.instaclustr.kafka.ldap.common.LDAPCache
-import com.instaclustr.kafka.ldap.toUserDNNodes
-import com.instaclustr.kafka.ldap.common.InMemoryLDAPServer
+import com.ultratendency.kafka.ldap.LDAPConfig
+import com.ultratendency.kafka.ldap.common.LDAPCache
+import com.ultratendency.kafka.ldap.toUserDNNodes
+import com.ultratendency.kafka.ldap.common.InMemoryLDAPServer
 import org.amshove.kluent.shouldEqual
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe

@@ -1,4 +1,4 @@
-package com.instaclustr.kafka.ldap
+package com.ultratendency.kafka.ldap
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory

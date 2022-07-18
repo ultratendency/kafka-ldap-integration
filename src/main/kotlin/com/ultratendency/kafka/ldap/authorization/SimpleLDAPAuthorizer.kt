@@ -1,11 +1,11 @@
-package com.instaclustr.kafka.ldap.authorization
+package com.ultratendency.kafka.ldap.authorization
 
 import kafka.network.RequestChannel
 import kafka.security.auth.Acl
 import kafka.security.auth.Operation
 import kafka.security.auth.Resource
 import kafka.security.auth.SimpleAclAuthorizer
-import com.instaclustr.kafka.ldap.Monitoring
+import com.ultratendency.kafka.ldap.Monitoring
 import org.apache.kafka.common.acl.AclPermissionType
 import org.apache.kafka.common.resource.ResourceType
 import org.apache.kafka.common.security.auth.KafkaPrincipal

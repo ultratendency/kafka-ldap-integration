@@ -1,7 +1,7 @@
-package com.instaclustr.kafka.ldap.authentication
+package com.ultratendency.kafka.ldap.authentication
 
-import com.instaclustr.kafka.ldap.common.InMemoryLDAPServer
-import com.instaclustr.kafka.ldap.common.LDAPCache
+import com.ultratendency.kafka.ldap.common.InMemoryLDAPServer
+import com.ultratendency.kafka.ldap.common.LDAPCache
 import org.amshove.kluent.shouldEqualTo
 import org.apache.kafka.common.security.plain.PlainAuthenticateCallback
 import org.spekframework.spek2.Spek

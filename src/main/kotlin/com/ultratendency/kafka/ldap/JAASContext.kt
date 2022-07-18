@@ -1,4 +1,4 @@
-package com.instaclustr.kafka.ldap
+package com.ultratendency.kafka.ldap
 
 import org.slf4j.LoggerFactory
 

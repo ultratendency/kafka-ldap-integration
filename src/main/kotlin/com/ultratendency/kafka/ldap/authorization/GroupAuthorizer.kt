@@ -1,9 +1,9 @@
-package com.instaclustr.kafka.ldap.authorization
+package com.ultratendency.kafka.ldap.authorization
 
 import kafka.security.auth.Acl
-import com.instaclustr.kafka.ldap.LDAPConfig
-import com.instaclustr.kafka.ldap.common.LDAPCache
-import com.instaclustr.kafka.ldap.toUserDNNodes
+import com.ultratendency.kafka.ldap.LDAPConfig
+import com.ultratendency.kafka.ldap.common.LDAPCache
+import com.ultratendency.kafka.ldap.toUserDNNodes
 import org.apache.kafka.common.security.auth.KafkaPrincipal
 
 /**

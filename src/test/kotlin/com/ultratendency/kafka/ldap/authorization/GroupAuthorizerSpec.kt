@@ -1,7 +1,7 @@
-package com.instaclustr.kafka.ldap.authorization
+package com.ultratendency.kafka.ldap.authorization
 
-import com.instaclustr.kafka.ldap.JAASContext
-import com.instaclustr.kafka.ldap.common.InMemoryLDAPServer
+import com.ultratendency.kafka.ldap.JAASContext
+import com.ultratendency.kafka.ldap.common.InMemoryLDAPServer
 import kafka.security.auth.Acl
 import kafka.security.auth.Operation
 import kafka.security.auth.PermissionType

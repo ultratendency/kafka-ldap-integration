@@ -47,10 +47,10 @@ listener.name.sasl_plaintext.plain.sasl.jaas.config=\
 
 # Configure the authentication to use LDAP (verify that client is actually who they say they are)
 listener.name.sasl_plaintext.plain.sasl.server.callback.handler.class=\
-  com.instaclustr.kafka.ldap.authentication.SimpleLDAPAuthentication
+  com.ultratendency.kafka.ldap.authentication.SimpleLDAPAuthentication
 
 # Configure the authorization to use LDAP (verify that client is allowed to perform a specific action)
-authorizer.class.name=com.instaclustr.kafka.ldap.authorization.SimpleLDAPAuthorizer
+authorizer.class.name=com.ultratendency.kafka.ldap.authorization.SimpleLDAPAuthorizer
 
 # Configure super users
 super.users=User:srvkafkabroker

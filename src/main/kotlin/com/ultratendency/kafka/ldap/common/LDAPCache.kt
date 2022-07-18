@@ -1,10 +1,10 @@
-package com.instaclustr.kafka.ldap.common
+package com.ultratendency.kafka.ldap.common
 
 import com.github.benmanes.caffeine.cache.CacheLoader
 import com.github.benmanes.caffeine.cache.Caffeine
 import com.github.benmanes.caffeine.cache.LoadingCache
-import com.instaclustr.kafka.ldap.LDAPConfig
-import com.instaclustr.kafka.ldap.Monitoring
+import com.ultratendency.kafka.ldap.LDAPConfig
+import com.ultratendency.kafka.ldap.Monitoring
 import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
