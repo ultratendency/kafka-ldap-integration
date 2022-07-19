@@ -97,14 +97,18 @@ publishing {
         shadow(MavenPublication) { publication ->
             project.shadow.component(publication)
         }
+        gpr(MavenPublication) {
+            from(components.java)
+        }
     }
     repositories {
         maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/ultratendency/kafka-ldap-integration")
             credentials {
-                username findProperty("nexusUser")
-                password findProperty("nexusPassword")
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
             }
-            url findProperty("nexusURL")
         }
     }
 }
