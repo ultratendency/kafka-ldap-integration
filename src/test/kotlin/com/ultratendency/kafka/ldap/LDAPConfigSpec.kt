@@ -1,5 +1,6 @@
 package com.ultratendency.kafka.ldap
 
+import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldEqual
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
@@ -67,6 +68,20 @@ object LDAPConfigSpec : Spek({
             it("should return default yaml config") {
                 // will find ldapconfig.yaml resource under build/resources/ldapconfig.yaml...
                 LDAPConfig.getByClasspath() shouldEqual refLDAPConfig
+            }
+        }
+
+        context("toUserDN - Correct mapping") {
+            it("should return the correct user DN") {
+                LDAPConfig.getByClasspath().toUserDN("test") shouldBeEqualTo
+                    "uid=test,ou=serviceaccounts,dc=test,dc=local"
+            }
+        }
+
+        context("toAdminDN - Correct mapping") {
+            it("should return the correct admin DN") {
+                LDAPConfig.getByClasspath().toAdminDN("test") shouldBeEqualTo
+                    "uid=test,ou=serviceaccounts,dc=test,dc=local"
             }
         }
     }
