@@ -69,5 +69,17 @@ object LDAPConfigSpec : Spek({
                 LDAPConfig.getByClasspath() shouldEqual refLDAPConfig
             }
         }
+
+        context("toUserDN - Correct mapping") {
+            it("should return the correct user DN") {
+                LDAPConfig.getByClasspath().toUserDN("test") shouldEqual "uid=test,ou=serviceaccounts,dc=test,dc=local"
+            }
+        }
+
+        context("toAdminDN - Correct mapping") {
+            it("should return the correct admin DN") {
+                LDAPConfig.getByClasspath().toAdminDN("test") shouldEqual "uid=test,ou=serviceaccounts,dc=test,dc=local"
+            }
+        }
     }
 })
