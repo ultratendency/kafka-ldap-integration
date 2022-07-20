@@ -1,5 +1,6 @@
 package com.ultratendency.kafka.ldap
 
+import org.amshove.kluent.shouldBeEqualTo
 import org.amshove.kluent.shouldEqual
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
@@ -72,13 +73,15 @@ object LDAPConfigSpec : Spek({
 
         context("toUserDN - Correct mapping") {
             it("should return the correct user DN") {
-                LDAPConfig.getByClasspath().toUserDN("test") shouldEqual "uid=test,ou=serviceaccounts,dc=test,dc=local"
+                LDAPConfig.getByClasspath().toUserDN("test") shouldBeEqualTo
+                    "uid=test,ou=serviceaccounts,dc=test,dc=local"
             }
         }
 
         context("toAdminDN - Correct mapping") {
             it("should return the correct admin DN") {
-                LDAPConfig.getByClasspath().toAdminDN("test") shouldEqual "uid=test,ou=serviceaccounts,dc=test,dc=local"
+                LDAPConfig.getByClasspath().toAdminDN("test") shouldBeEqualTo
+                    "uid=test,ou=serviceaccounts,dc=test,dc=local"
             }
         }
     }
