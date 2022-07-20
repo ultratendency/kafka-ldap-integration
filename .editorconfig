@@ -32,5 +32,5 @@ tab_width = 4
 
 [{gradlew,gradlew.bat}]
 max_line_length = off
-insert_final_newline = false
+insert_final_newline = true
 indent_size = off
