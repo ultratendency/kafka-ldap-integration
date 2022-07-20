@@ -23,3 +23,5 @@ jobs:
           DEFAULT_BRANCH: main
           VALIDATE_ALL_CODEBASE: false
           VALIDATE_KOTLIN_ANDROID: false
+          VALIDATE_SHELL_SHFMT: false
+          VALIDATE_BASH: false

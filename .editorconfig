@@ -29,3 +29,11 @@ max_line_length = off
 [*.kt]
 indent_size = 4
 tab_width = 4
+
+[{gradlew,gradlew.bat}]
+max_line_length = off
+insert_final_newline = true
+indent_size = off
+
+[gradlew.bat]
+end_of_line = crlf
