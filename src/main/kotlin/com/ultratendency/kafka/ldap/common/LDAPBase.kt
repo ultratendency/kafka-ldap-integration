@@ -43,7 +43,8 @@ abstract class LDAPBase protected constructor(config: LDAPConfig.Config) : AutoC
             )
             ldapConnection.setDisconnectInfo(
                 DisconnectType.IO_ERROR,
-                "Exception when connecting to LDAP(${config.host},${config.port})", e
+                "Exception when connecting to LDAP(${config.host},${config.port})",
+                e
             )
         }
     }
