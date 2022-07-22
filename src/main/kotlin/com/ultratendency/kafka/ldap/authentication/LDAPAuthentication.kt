@@ -26,7 +26,9 @@ class LDAPAuthentication private constructor(val config: LDAPConfig.Config) : LD
             }
         } catch (e: LDAPException) {
             AuthenResult(
-                false, uDN, "LDAP bind exception for $uDN - ${e.diagnosticMessage}"
+                false,
+                uDN,
+                "LDAP bind exception for $uDN - ${e.diagnosticMessage}"
             )
         }
 
