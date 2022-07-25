@@ -30,7 +30,11 @@ version '1.1.0-SNAPSHOT'
 
 sourceCompatibility = "$java_version"
 
-test { useJUnitPlatform { includeEngines 'spek2' } }
+test {
+    useJUnitPlatform {
+        includeEngines 'spek2'
+    }
+}
 
 repositories {
     mavenCentral()
@@ -72,7 +76,9 @@ test {
     useJUnitPlatform {
         includeEngines 'spek2'
     }
-    testLogging.events("passed", "skipped", "failed")
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
 
 shadowJar {
