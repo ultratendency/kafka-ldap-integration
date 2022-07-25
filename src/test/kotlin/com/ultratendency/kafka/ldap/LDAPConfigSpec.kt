@@ -1,7 +1,6 @@
 package com.ultratendency.kafka.ldap
 
 import org.amshove.kluent.shouldBeEqualTo
-import org.amshove.kluent.shouldEqual
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
@@ -53,21 +52,21 @@ object LDAPConfigSpec : Spek(
 
                 yamlFiles.forEach { pair, refConfig ->
                     it("should return ${pair.first} for ${pair.second}") {
-                        LDAPConfig.getBySource(pair.second) shouldEqual refConfig
+                        LDAPConfig.getBySource(pair.second) shouldBeEqualTo refConfig
                     }
                 }
             }
 
             context("getBySource - incorrect path to YAML config") {
                 it("should return empty config") {
-                    LDAPConfig.getBySource("invalid.yaml") shouldEqual LDAPConfig.emptyConfig
+                    LDAPConfig.getBySource("invalid.yaml") shouldBeEqualTo LDAPConfig.emptyConfig
                 }
             }
 
             context("getByClasspath - load of default yaml config") {
                 it("should return default yaml config") {
                     // will find ldapconfig.yaml resource under build/resources/ldapconfig.yaml...
-                    LDAPConfig.getByClasspath() shouldEqual refLDAPConfig
+                    LDAPConfig.getByClasspath() shouldBeEqualTo refLDAPConfig
                 }
             }
 

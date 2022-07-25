@@ -2,6 +2,7 @@ package com.ultratendency.kafka.ldap
 
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.dataformat.yaml.YAMLFactory
+import com.fasterxml.jackson.module.kotlin.KotlinFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import org.slf4j.LoggerFactory
 import java.lang.IllegalArgumentException
@@ -69,7 +70,16 @@ object LDAPConfig {
     private fun loadConfig(configFile: URL): Config {
         val mapper = ObjectMapper(YAMLFactory())
 
-        mapper.registerModule(KotlinModule()) // Enable Kotlin and data class support
+        mapper.registerModule(
+            KotlinModule.Builder()
+                .withReflectionCacheSize(512)
+                .configure(KotlinFeature.NullToEmptyCollection, false)
+                .configure(KotlinFeature.NullToEmptyMap, false)
+                .disable(KotlinFeature.NullIsSameAsDefault)
+                .disable(KotlinFeature.SingletonSupport)
+                .configure(KotlinFeature.StrictNullChecks, false)
+                .build()
+        ) // Enable Kotlin and data class support
 
         val errMsg = "Authentication and authorization will fail - "
         val defaultDir = Paths.get("").toAbsolutePath()
