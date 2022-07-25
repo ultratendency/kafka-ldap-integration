@@ -7,7 +7,6 @@ buildscript {
     ext.jackson_version = '2.13.3'
     ext.spek_version = '2.0.18'
     ext.kluent_version = '1.68'
-    ext.slf4j_version = '1.7.36'
     ext.kotlinter_version = '3.11.1'
     ext.shadow_version = '7.1.2'
     ext.versions_version = '0.42.0'
@@ -56,8 +55,6 @@ dependencies {
     testRuntimeOnly ("org.spekframework.spek2:spek-runner-junit5:$spek_version") {
         exclude group: 'org.jetbrains.kotlin'
     }
-
-    testRuntimeOnly "org.slf4j:slf4j-jdk14:$slf4j_version"
 }
 
 configurations.all {
