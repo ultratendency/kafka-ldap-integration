@@ -123,7 +123,7 @@ object LDAPConfig {
 }
 
 // A couple of extension functions for Config
-fun LDAPConfig.Config.toUserDN(user: String) = "$usrUid=$user,$usrBaseDN".toLowerCase()
-fun LDAPConfig.Config.toAdminDN(user: String) = "$adminUid=$user,$adminBaseDN".toLowerCase()
+fun LDAPConfig.Config.toUserDN(user: String) = "$usrUid=$user,$usrBaseDN".lowercase()
+fun LDAPConfig.Config.toAdminDN(user: String) = "$adminUid=$user,$adminBaseDN".lowercase()
 
 fun LDAPConfig.Config.toUserDNNodes(user: String) = listOf(toUserDN(user), toAdminDN(user))
