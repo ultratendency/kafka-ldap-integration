@@ -51,7 +51,7 @@ dependencies {
         exclude group: 'org.jetbrains.kotlin'
     }
 
-    testRuntime "org.slf4j:slf4j-jdk14:$slf4j_version"
+    testRuntimeOnly "org.slf4j:slf4j-jdk14:$slf4j_version"
 }
 
 configurations.all {
