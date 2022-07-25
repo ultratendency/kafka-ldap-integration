@@ -5,7 +5,7 @@ import com.ultratendency.kafka.ldap.LDAPConfig
 import com.ultratendency.kafka.ldap.common.InMemoryLDAPServer
 import com.ultratendency.kafka.ldap.common.LDAPCache
 import com.ultratendency.kafka.ldap.toUserDNNodes
-import org.amshove.kluent.shouldEqual
+import org.amshove.kluent.shouldBeEqualTo
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 import java.util.UUID
@@ -54,7 +54,7 @@ object LDAPAuthorizationSpec : Spek(
                         LDAPAuthorization.init(
                             UUID.randomUUID().toString(),
                             src
-                        ).isUserMemberOfAny(userDNs, usrGrp.second).size shouldEqual size
+                        ).isUserMemberOfAny(userDNs, usrGrp.second).size shouldBeEqualTo size
                     }
                 }
             }
@@ -69,7 +69,7 @@ object LDAPAuthorizationSpec : Spek(
                         val userDNs = LDAPConfig.getByClasspath().toUserDNNodes(usrGrp.first)
 
                         LDAPAuthorization.init(UUID.randomUUID().toString())
-                            .isUserMemberOfAny(userDNs, usrGrp.second).size shouldEqual size
+                            .isUserMemberOfAny(userDNs, usrGrp.second).size shouldBeEqualTo size
                     }
                 }
             }
