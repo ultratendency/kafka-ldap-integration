@@ -90,7 +90,7 @@ class LDAPAuthorization private constructor(
             if (groupDN.isNotEmpty()) {
                 ldapConnection.getEntry(groupDN)
                     ?.getAttributeValues(config.grpAttrName)
-                    ?.map { it.toLowerCase() } ?: emptyList()
+                    ?.map { it.lowercase() } ?: emptyList()
             } else {
                 emptyList()
             }
