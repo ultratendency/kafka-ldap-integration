@@ -67,9 +67,9 @@ class LDAPAuthorization private constructor(
                     )
                 )
                 .let {
-                    if (it.entryCount == 1)
+                    if (it.entryCount == 1) {
                         it.searchEntries[0].dn
-                    else {
+                    } else {
                         log.error(
                             "${Monitoring.AUTHORIZATION_SEARCH_MISS.txt} $groupName under " +
                                 "${config.grpBaseDN} ($uuid)"
@@ -87,12 +87,13 @@ class LDAPAuthorization private constructor(
 
     private fun getGroupMembers(groupDN: String): List<String> =
         try {
-            if (groupDN.isNotEmpty())
+            if (groupDN.isNotEmpty()) {
                 ldapConnection.getEntry(groupDN)
                     ?.getAttributeValues(config.grpAttrName)
                     ?.map { it.toLowerCase() } ?: emptyList()
-            else
+            } else {
                 emptyList()
+            }
         } catch (e: LDAPException) {
             log.error(
                 "${Monitoring.AUTHORIZATION_GROUP_FAILURE.txt} - ${config.grpAttrName} - " +

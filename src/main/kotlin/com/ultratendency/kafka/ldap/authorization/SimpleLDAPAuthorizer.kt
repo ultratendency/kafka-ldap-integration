@@ -27,7 +27,6 @@ class SimpleLDAPAuthorizer : SimpleAclAuthorizer() {
         operation: Operation?,
         resource: Resource?
     ): Boolean {
-
         // nothing to do if already authorized
         // this includes the configurable default handling for non ACLs case -
         //      ' allow.everyone.if.no.acl.found'

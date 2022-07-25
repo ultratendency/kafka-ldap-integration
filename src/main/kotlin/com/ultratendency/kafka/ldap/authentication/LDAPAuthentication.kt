@@ -15,9 +15,9 @@ class LDAPAuthentication private constructor(val config: LDAPConfig.Config) : LD
 
     private fun bindOk(uDN: String, pwd: String): AuthenResult =
         try {
-            if (ldapConnection.bind(uDN, pwd).resultCode == ResultCode.SUCCESS)
+            if (ldapConnection.bind(uDN, pwd).resultCode == ResultCode.SUCCESS) {
                 AuthenResult(true, uDN, "")
-            else {
+            } else {
                 AuthenResult(
                     false,
                     uDN,
