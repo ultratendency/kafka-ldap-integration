@@ -5,7 +5,7 @@ import com.ultratendency.kafka.ldap.common.InMemoryLDAPServer
 import kafka.security.auth.Acl
 import kafka.security.auth.Operation
 import kafka.security.auth.PermissionType
-import org.amshove.kluent.shouldEqualTo
+import org.amshove.kluent.shouldBeEqualTo
 import org.apache.kafka.common.acl.AclOperation
 import org.apache.kafka.common.security.auth.KafkaPrincipal
 import org.spekframework.spek2.Spek
@@ -100,7 +100,7 @@ object GroupAuthorizerSpec : Spek(
                             .authorize(
                                 createKP(tr.first),
                                 cDescribeAS(tr.second.first(), tr.second.last())
-                            ) shouldEqualTo result
+                            ) shouldBeEqualTo result
                     }
                 }
             }
@@ -115,7 +115,7 @@ object GroupAuthorizerSpec : Spek(
                             .authorize(
                                 createKP(tr.first),
                                 cWriteAS(tr.second)
-                            ) shouldEqualTo result
+                            ) shouldBeEqualTo result
                     }
                 }
             }
@@ -130,7 +130,7 @@ object GroupAuthorizerSpec : Spek(
                             .authorize(
                                 createKP(tr.first),
                                 cReadAS(tr.second)
-                            ) shouldEqualTo result
+                            ) shouldBeEqualTo result
                     }
                 }
             }
