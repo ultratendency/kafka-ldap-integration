@@ -102,9 +102,6 @@ publishing {
         shadow(MavenPublication) { publication ->
             project.shadow.component(publication)
         }
-        gpr(MavenPublication) {
-            from(components.java)
-        }
     }
     repositories {
         maven {
