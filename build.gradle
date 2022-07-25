@@ -11,7 +11,7 @@ buildscript {
 }
 
 plugins {
-    id "org.jetbrains.kotlin.jvm" version "1.4.32"
+    id "org.jetbrains.kotlin.jvm" version "1.7.10"
     id 'org.jmailen.kotlinter' version '3.0.0'
     id 'maven-publish'
     id 'com.github.johnrengelman.shadow' version '7.1.2'
@@ -51,7 +51,7 @@ dependencies {
         exclude group: 'org.jetbrains.kotlin'
     }
 
-    testRuntime "org.slf4j:slf4j-jdk14:$slf4j_version"
+    testRuntimeOnly "org.slf4j:slf4j-jdk14:$slf4j_version"
 }
 
 configurations.all {
