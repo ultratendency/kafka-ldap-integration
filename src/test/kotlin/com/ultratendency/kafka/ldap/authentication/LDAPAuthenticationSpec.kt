@@ -4,7 +4,7 @@ import com.ultratendency.kafka.ldap.LDAPConfig
 import com.ultratendency.kafka.ldap.common.InMemoryLDAPServer
 import com.ultratendency.kafka.ldap.common.LDAPCache
 import com.ultratendency.kafka.ldap.toUserDNNodes
-import org.amshove.kluent.shouldEqual
+import org.amshove.kluent.shouldBeEqualTo
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
@@ -46,7 +46,7 @@ object LDAPAuthenticationSpec : Spek(
 
                         LDAPAuthentication.init(src)
                             .canUserAuthenticate(userDNs, user.second)
-                            .isNotEmpty() shouldEqual result
+                            .isNotEmpty() shouldBeEqualTo result
                     }
                 }
             }
@@ -58,7 +58,7 @@ object LDAPAuthenticationSpec : Spek(
 
                         LDAPAuthentication.init()
                             .canUserAuthenticate(userDNs, user.second)
-                            .isNotEmpty() shouldEqual result
+                            .isNotEmpty() shouldBeEqualTo result
                     }
                 }
             }
