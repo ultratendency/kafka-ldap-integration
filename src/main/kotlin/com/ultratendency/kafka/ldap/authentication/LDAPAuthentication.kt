@@ -43,10 +43,12 @@ class LDAPAuthentication private constructor(val config: LDAPConfig.Config) : LD
             userDNs
                 .map { uDN -> bindOk(uDN, pwd) }
                 .also { result ->
-                    if (result.all { !it.authenticated }) result.forEach {
-                        log.error(
-                            it.errMsg
-                        )
+                    if (result.all { !it.authenticated }) {
+                        result.forEach {
+                            log.error(
+                                it.errMsg
+                            )
+                        }
                     }
                 }
                 .filter { it.authenticated }
