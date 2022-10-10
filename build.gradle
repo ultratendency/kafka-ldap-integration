@@ -84,7 +84,7 @@ test {
 }
 
 shadowJar {
-    baseName = "${project.name}-$scala_version-$kafka_version"
+    archiveBaseName = "${project.name}-$scala_version-$kafka_version"
     classifier = null
 
     dependencies {
@@ -132,7 +132,7 @@ sonarqube {
 
 jacocoTestReport {
     reports {
-        xml.enabled true
+        xml.required = true
     }
 }
 
