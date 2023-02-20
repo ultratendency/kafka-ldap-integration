@@ -10,7 +10,7 @@ buildscript {
     ext.kotlinter_version = '3.13.0'
     ext.shadow_version = '7.1.2'
     ext.versions_version = '0.45.0'
-    ext.sonarqube_version = '3.5.0.2730'
+    ext.sonarqube_version = '4.0.0.2929'
 
     ext.java_version = '11'
 
