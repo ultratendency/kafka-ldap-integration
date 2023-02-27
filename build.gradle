@@ -85,7 +85,6 @@ test {
 
 shadowJar {
     archiveBaseName = "${project.name}-$scala_version-$kafka_version"
-    classifier = null
 
     dependencies {
         exclude(dependency('org.apache.kafka::'))
