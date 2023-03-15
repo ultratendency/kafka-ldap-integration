@@ -33,7 +33,7 @@ object LDAPConfig {
         val grpUid: String,
         val grpAttrName: String,
         val usrCacheExpire: Int,
-        val grpCacheExpire: Int
+        val grpCacheExpire: Int,
     )
 
     private val log = LoggerFactory.getLogger(LDAPConfig::class.java)
@@ -44,7 +44,7 @@ object LDAPConfig {
         "", "",
         "", "",
         "", "", "",
-        0, 0
+        0, 0,
     )
 
     init {
@@ -78,7 +78,7 @@ object LDAPConfig {
                 .disable(KotlinFeature.NullIsSameAsDefault)
                 .disable(KotlinFeature.SingletonSupport)
                 .configure(KotlinFeature.StrictNullChecks, false)
-                .build()
+                .build(),
         ) // Enable Kotlin and data class support
 
         val errMsg = "Authentication and authorization will fail - "

@@ -69,7 +69,7 @@ class SimpleLDAPAuthentication : AuthenticateCallbackHandler {
     private fun logAuthenticationResult(isAuthenticated: Boolean, username: String) {
         if (isAuthenticated) {
             log.info(
-                "${Monitoring.AUTHENTICATION_SUCCESS.txt} - user=$username, status=authenticated"
+                "${Monitoring.AUTHENTICATION_SUCCESS.txt} - user=$username, status=authenticated",
             )
         } else {
             log.error("${Monitoring.AUTHENTICATION_FAILED.txt} - user=$username, status=denied")
@@ -79,7 +79,7 @@ class SimpleLDAPAuthentication : AuthenticateCallbackHandler {
     override fun configure(
         configs: MutableMap<String, *>?,
         saslMechanism: String?,
-        jaasConfigEntries: MutableList<AppConfigurationEntry>?
+        jaasConfigEntries: MutableList<AppConfigurationEntry>?,
     ) {
         val jaasOptions = jaasConfigEntries?.get(0)?.options
         JAASContext.username = optionValue(jaasOptions, "username")

@@ -25,7 +25,7 @@ class SimpleLDAPAuthorizer : SimpleAclAuthorizer() {
     override fun authorize(
         session: RequestChannel.Session?,
         operation: Operation?,
-        resource: Resource?
+        resource: Resource?,
     ): Boolean {
         // nothing to do if already authorized
         // this includes the configurable default handling for non ACLs case -
@@ -65,14 +65,14 @@ class SimpleLDAPAuthorizer : SimpleAclAuthorizer() {
 
         log.debug(
             "$lOperation has following Allow ACLs for $lResource: " +
-                "${acls.map { it.principal().name }} uuid=$uuid"
+                "${acls.map { it.principal().name }} uuid=$uuid",
         )
 
         // nothing to do if empty acl set
         if (acls.isEmpty()) {
             log.error(
                 "${Monitoring.AUTHORIZATION_FAILED.txt} - $authContext, status=denied, " +
-                    "reason=EMPTY_ALLOW_ACL"
+                    "reason=EMPTY_ALLOW_ACL",
             )
             return false
         }
@@ -86,7 +86,7 @@ class SimpleLDAPAuthorizer : SimpleAclAuthorizer() {
         when (isAuthorized) {
             true -> log.debug("Authorization End - $authContext, status=authorized")
             false -> log.error(
-                "${Monitoring.AUTHORIZATION_FAILED.txt} - $authContext, status=denied"
+                "${Monitoring.AUTHORIZATION_FAILED.txt} - $authContext, status=denied",
             )
         }
 

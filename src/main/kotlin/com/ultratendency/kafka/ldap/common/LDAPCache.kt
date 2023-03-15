@@ -86,7 +86,7 @@ object LDAPCache {
             (groupCache.get(Group(groupName, userDN))?.other ?: "").also {
                 log.info(
                     "${Monitoring.AUTHORIZATION_CACHE_UPDATED.txt} for " +
-                        "[$groupName,$userDN] ($uuid)"
+                        "[$groupName,$userDN] ($uuid)",
                 )
             }
         } catch (e: java.util.concurrent.ExecutionException) {
