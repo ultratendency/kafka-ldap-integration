@@ -18,7 +18,7 @@ class GroupAuthorizer(private val uuid: String) : AutoCloseable {
                 LDAPCache.groupAndUserExists(
                     groupName,
                     userDN,
-                    uuid
+                    uuid,
                 )
             }
         }
@@ -37,7 +37,7 @@ class GroupAuthorizer(private val uuid: String) : AutoCloseable {
                     // always check cache before ldap lookup
                     userGroupMembershipIsCached(
                         groups,
-                        userDNs
+                        userDNs,
                     ) || userGroupMembershipInLDAP(groups, userDNs)
                 }
         }

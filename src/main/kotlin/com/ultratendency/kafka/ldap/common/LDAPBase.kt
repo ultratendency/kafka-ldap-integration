@@ -24,7 +24,7 @@ abstract class LDAPBase protected constructor(config: LDAPConfig.Config) : AutoC
     // NB! - TrustAllTrustManager is too trusty, but good enough when inside corporate inner zone
     protected val ldapConnection = LDAPConnection(
         SSLUtil(TrustAllTrustManager()).createSSLSocketFactory(),
-        connectOptions
+        connectOptions,
     )
 
     init {
@@ -39,12 +39,12 @@ abstract class LDAPBase protected constructor(config: LDAPConfig.Config) : AutoC
         } catch (e: LDAPException) {
             log.error(
                 "${Monitoring.LDAP_BASE_FAILURE.txt} (${config.host},${config.port}) - " +
-                    e.diagnosticMessage
+                    e.diagnosticMessage,
             )
             ldapConnection.setDisconnectInfo(
                 DisconnectType.IO_ERROR,
                 "Exception when connecting to LDAP(${config.host},${config.port})",
-                e
+                e,
             )
         }
     }

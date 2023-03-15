@@ -23,20 +23,20 @@ object SimpleLDAPAuthenticationSpec : Spek(
                 val tests = mapOf(
                     arrayOf(
                         NameCallback("invalid user and pwd", "dontexist"),
-                        PlainAuthenticateCallback("wrong".toCharArray())
+                        PlainAuthenticateCallback("wrong".toCharArray()),
                     ) to false,
                     arrayOf(
                         NameCallback("correct user and pwd", "igroup"),
-                        PlainAuthenticateCallback("itest".toCharArray())
+                        PlainAuthenticateCallback("itest".toCharArray()),
                     ) to true,
                     arrayOf(
                         NameCallback("correct user and invalid pwd", "igroup"),
-                        PlainAuthenticateCallback("wrong".toCharArray())
+                        PlainAuthenticateCallback("wrong".toCharArray()),
                     ) to false,
                     arrayOf(
                         NameCallback("correct user and pwd", "srvp01"),
-                        PlainAuthenticateCallback("srvp01".toCharArray())
-                    ) to true
+                        PlainAuthenticateCallback("srvp01".toCharArray()),
+                    ) to true,
                 )
 
                 tests.forEach { callbacks, result ->
@@ -55,5 +55,5 @@ object SimpleLDAPAuthenticationSpec : Spek(
                 InMemoryLDAPServer.stop()
             }
         }
-    }
+    },
 )

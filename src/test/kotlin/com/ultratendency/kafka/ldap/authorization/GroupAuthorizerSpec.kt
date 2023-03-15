@@ -21,8 +21,8 @@ object GroupAuthorizerSpec : Spek(
                     KafkaPrincipal(KafkaPrincipal.USER_TYPE, ldapGroup),
                     PermissionType.fromString("Allow"),
                     "*",
-                    Operation.fromJava(AclOperation.READ)
-                )
+                    Operation.fromJava(AclOperation.READ),
+                ),
             )
 
         // create describe allowance for ldap group
@@ -32,14 +32,14 @@ object GroupAuthorizerSpec : Spek(
                     KafkaPrincipal(KafkaPrincipal.USER_TYPE, ldapGroup1),
                     PermissionType.fromString("Allow"),
                     "*",
-                    Operation.fromJava(AclOperation.DESCRIBE)
+                    Operation.fromJava(AclOperation.DESCRIBE),
                 ),
                 Acl(
                     KafkaPrincipal(KafkaPrincipal.USER_TYPE, ldapGroup2),
                     PermissionType.fromString("Allow"),
                     "*",
-                    Operation.fromJava(AclOperation.DESCRIBE)
-                )
+                    Operation.fromJava(AclOperation.DESCRIBE),
+                ),
             )
 
         // create write allowance for ldap group
@@ -49,8 +49,8 @@ object GroupAuthorizerSpec : Spek(
                     KafkaPrincipal(KafkaPrincipal.USER_TYPE, ldapGroup),
                     PermissionType.fromString("Allow"),
                     "*",
-                    Operation.fromJava(AclOperation.WRITE)
-                )
+                    Operation.fromJava(AclOperation.WRITE),
+                ),
             )
 
         // helper function for creating KafkaPrincipal
@@ -75,31 +75,31 @@ object GroupAuthorizerSpec : Spek(
                 Triple("srvc01", listOf("KC-tpc-02", "KP-tpc-02"), "tpc-02") to false,
 
                 Triple("srvp01", listOf("KC-tpc-03", "KP-tpc-03"), "tpc-03") to false,
-                Triple("srvc01", listOf("KC-tpc-03", "KP-tpc-03"), "tpc-03") to true
+                Triple("srvc01", listOf("KC-tpc-03", "KP-tpc-03"), "tpc-03") to true,
             )
 
             val refUserWriteACL = mapOf(
                 Triple("srvp01", "KP-tpc-01", "tpc-01") to false,
                 Triple("srvp01", "KP-tpc-02", "tpc-02") to true,
-                Triple("srvp01", "KP-tpc-03", "tpc-03") to false
+                Triple("srvp01", "KP-tpc-03", "tpc-03") to false,
             )
 
             val refUserReadACL = mapOf(
                 Triple("srvc01", "KC-tpc-01", "tpc-01") to false,
                 Triple("srvc01", "KC-tpc-02", "tpc-02") to false,
-                Triple("srvc01", "KC-tpc-03", "tpc-03") to true
+                Triple("srvc01", "KC-tpc-03", "tpc-03") to true,
             )
 
             context("describe allowance") {
                 refUserDescribeACL.forEach { tr, result ->
                     it(
                         "should return $result for user ${tr.first} trying describe " +
-                            "on topic ${tr.third}"
+                            "on topic ${tr.third}",
                     ) {
                         GroupAuthorizer(UUID.randomUUID().toString())
                             .authorize(
                                 createKP(tr.first),
-                                cDescribeAS(tr.second.first(), tr.second.last())
+                                cDescribeAS(tr.second.first(), tr.second.last()),
                             ) shouldBeEqualTo result
                     }
                 }
@@ -109,12 +109,12 @@ object GroupAuthorizerSpec : Spek(
                 refUserWriteACL.forEach { tr, result ->
                     it(
                         "should return $result for user ${tr.first} trying write on " +
-                            "topic ${tr.third}"
+                            "topic ${tr.third}",
                     ) {
                         GroupAuthorizer(UUID.randomUUID().toString())
                             .authorize(
                                 createKP(tr.first),
-                                cWriteAS(tr.second)
+                                cWriteAS(tr.second),
                             ) shouldBeEqualTo result
                     }
                 }
@@ -124,12 +124,12 @@ object GroupAuthorizerSpec : Spek(
                 refUserReadACL.forEach { tr, result ->
                     it(
                         "should return $result for user ${tr.first} trying read on " +
-                            "topic ${tr.third}"
+                            "topic ${tr.third}",
                     ) {
                         GroupAuthorizer(UUID.randomUUID().toString())
                             .authorize(
                                 createKP(tr.first),
-                                cReadAS(tr.second)
+                                cReadAS(tr.second),
                             ) shouldBeEqualTo result
                     }
                 }
@@ -139,5 +139,5 @@ object GroupAuthorizerSpec : Spek(
                 InMemoryLDAPServer.stop()
             }
         }
-    }
+    },
 )

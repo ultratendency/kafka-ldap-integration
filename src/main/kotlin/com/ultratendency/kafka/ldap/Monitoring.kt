@@ -26,5 +26,5 @@ enum class Monitoring(val txt: String) {
     AUTHORIZATION_SEARCH_MISS("LDAP search couldn't resolve group DN for"),
     AUTHORIZATION_SEARCH_FAILURE("Cannot resolve group DN for"),
     AUTHORIZATION_GROUP_FAILURE("Cannot get group members"),
-    AUTHORIZATION_FAILED("Authorization End")
+    AUTHORIZATION_FAILED("Authorization End"),
 }

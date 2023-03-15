@@ -21,21 +21,21 @@ class LDAPAuthentication private constructor(val config: LDAPConfig.Config) : LD
                 AuthenResult(
                     false,
                     uDN,
-                    "LDAP bind unsuccessful for $uDN - unknown situation :-("
+                    "LDAP bind unsuccessful for $uDN - unknown situation :-(",
                 )
             }
         } catch (e: LDAPException) {
             AuthenResult(
                 false,
                 uDN,
-                "LDAP bind exception for $uDN - ${e.diagnosticMessage}"
+                "LDAP bind exception for $uDN - ${e.diagnosticMessage}",
             )
         }
 
     override fun canUserAuthenticate(userDNs: List<String>, pwd: String): Set<AuthenResult> =
         if (!ldapConnection.isConnected) {
             log.error(
-                "${Monitoring.AUTHENTICATION_LDAP_FAILURE.txt} $userDNs and related password!"
+                "${Monitoring.AUTHENTICATION_LDAP_FAILURE.txt} $userDNs and related password!",
             )
             emptySet()
         } else {
@@ -46,7 +46,7 @@ class LDAPAuthentication private constructor(val config: LDAPConfig.Config) : LD
                     if (result.all { !it.authenticated }) {
                         result.forEach {
                             log.error(
-                                it.errMsg
+                                it.errMsg,
                             )
                         }
                     }
