@@ -35,7 +35,7 @@ object LDAPAuthenticationSpec : Spek(
                 Pair("srvp01", "srvp01") to true,
                 Pair("srvc01", "srvc01") to true,
                 Pair("srvp01", "invalidpwd") to false,
-                Pair("invalid", "srvc01") to false
+                Pair("invalid", "srvc01") to false,
             )
 
             context("correct path to default YAML config") {
@@ -67,5 +67,5 @@ object LDAPAuthenticationSpec : Spek(
                 InMemoryLDAPServer.stop()
             }
         }
-    }
+    },
 )

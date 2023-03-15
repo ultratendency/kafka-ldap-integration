@@ -19,7 +19,7 @@ import kotlin.system.measureTimeMillis
  */
 class LDAPAuthorization private constructor(
     private val uuid: String,
-    val config: LDAPConfig.Config
+    val config: LDAPConfig.Config,
 ) : LDAPBase(config) {
 
     // In authorization context, needs to bind the connection before compare-match between group
@@ -37,7 +37,7 @@ class LDAPAuthorization private constructor(
     private fun doBind(userDN: String, pwd: String): Boolean =
         try {
             log.debug(
-                "Binding information for authorization fetched from JAAS config file [$userDN]"
+                "Binding information for authorization fetched from JAAS config file [$userDN]",
             )
             measureTimeMillis { ldapConnection.bind(userDN, pwd) }
                 .also {
@@ -48,7 +48,7 @@ class LDAPAuthorization private constructor(
         } catch (e: LDAPException) {
             log.error(
                 "${Monitoring.AUTHORIZATION_BIND_FAILED.txt} $userDN to (${config.host}," +
-                    "${config.port}) - ${e.diagnosticMessage}"
+                    "${config.port}) - ${e.diagnosticMessage}",
             )
             false
         }
@@ -63,8 +63,8 @@ class LDAPAuthorization private constructor(
                         config.grpBaseDN,
                         SearchScope.SUB,
                         filter,
-                        SearchRequest.NO_ATTRIBUTES
-                    )
+                        SearchRequest.NO_ATTRIBUTES,
+                    ),
                 )
                 .let {
                     if (it.entryCount == 1) {
@@ -72,7 +72,7 @@ class LDAPAuthorization private constructor(
                     } else {
                         log.error(
                             "${Monitoring.AUTHORIZATION_SEARCH_MISS.txt} $groupName under " +
-                                "${config.grpBaseDN} ($uuid)"
+                                "${config.grpBaseDN} ($uuid)",
                         )
                         ""
                     }
@@ -80,7 +80,7 @@ class LDAPAuthorization private constructor(
         } catch (e: LDAPSearchException) {
             log.error(
                 "${Monitoring.AUTHORIZATION_SEARCH_FAILURE.txt} $groupName under " +
-                    "${config.grpBaseDN} ($uuid)"
+                    "${config.grpBaseDN} ($uuid)",
             )
             ""
         }
@@ -97,7 +97,7 @@ class LDAPAuthorization private constructor(
         } catch (e: LDAPException) {
             log.error(
                 "${Monitoring.AUTHORIZATION_GROUP_FAILURE.txt} - ${config.grpAttrName} - " +
-                    "for $groupDN ($uuid)"
+                    "for $groupDN ($uuid)",
             )
             emptyList()
         }
@@ -106,7 +106,7 @@ class LDAPAuthorization private constructor(
         if (!connectionAndBindIsOk) {
             log.error(
                 "${Monitoring.AUTHORIZATION_LDAP_FAILURE.txt} $userDNs membership in " +
-                    "$groups ($uuid)"
+                    "$groups ($uuid)",
             )
             return emptySet()
         }
