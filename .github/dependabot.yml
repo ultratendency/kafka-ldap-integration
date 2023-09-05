@@ -5,19 +5,19 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-      time: "08:00"
+      time: "07:00"
       timezone: "Europe/Berlin"
 
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "daily"
-      time: "08:00"
+      time: "07:00"
       timezone: "Europe/Berlin"
 
   - package-ecosystem: "docker"
     directory: "/"
     schedule:
       interval: "daily"
-      time: "08:00"
+      time: "07:00"
       timezone: "Europe/Berlin"
