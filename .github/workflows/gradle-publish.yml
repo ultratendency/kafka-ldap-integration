@@ -29,12 +29,12 @@ jobs:
         settings-path: ${{ github.workspace }}
 
     - name: Build with Gradle
-      uses: gradle/gradle-build-action@v2.8.0
+      uses: gradle/gradle-build-action@v2.8.1
       with:
         arguments: build
 
     - name: Publish to GitHub Packages
-      uses: gradle/gradle-build-action@v2.8.0
+      uses: gradle/gradle-build-action@v2.8.1
       with:
         arguments: publish
       env:
