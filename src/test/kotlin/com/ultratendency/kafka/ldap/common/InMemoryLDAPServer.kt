@@ -54,8 +54,8 @@ object InMemoryLDAPServer {
                     OperationType.MODIFY,
                     OperationType.DELETE,
                 )
-                // let the embedded server use identical schema as apache DS configured for AD support
-                // (group and sAMAcc..)
+                // let the embedded server use identical schema as apache DS configured for AD
+                // support (group and sAMAcc..)
                 schema = Schema.getSchema("src/test/resources/apacheDS.ldif")
             } catch (e: Exception) {
                 log.error("$e")
