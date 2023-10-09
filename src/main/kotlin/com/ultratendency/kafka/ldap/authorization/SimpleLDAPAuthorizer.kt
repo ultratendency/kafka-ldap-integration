@@ -38,8 +38,9 @@ class SimpleLDAPAuthorizer : SimpleAclAuthorizer() {
         val lResource = resource?.toString()
 
         val uuid = java.util.UUID.randomUUID().toString()
-        val authContext = "principal=$principal, operation=$lOperation, remote_host=$host, " +
-            "resource=$lResource, uuid=$uuid"
+        val authContext =
+            "principal=$principal, operation=$lOperation, remote_host=$host, " +
+                "resource=$lResource, uuid=$uuid"
 
         log.debug("Authorization Start -  $authContext")
 
@@ -53,8 +54,8 @@ class SimpleLDAPAuthorizer : SimpleAclAuthorizer() {
 
         // TODO AclPermissionType.ALLOW - under change in minor version - CAREFUL!
         // userAdd allow access control lists for resource and given operation
-        val sacls = getAcls(resource)
-            .filter {
+        val sacls =
+            getAcls(resource).filter {
                 it.operation() == operation && it.permissionType()
                     .toJava() == AclPermissionType.ALLOW
             }
@@ -79,15 +80,17 @@ class SimpleLDAPAuthorizer : SimpleAclAuthorizer() {
 
         // verify membership, either cached or through LDAP - see GroupAuthorizer
         val anonymous = KafkaPrincipal(KafkaPrincipal.USER_TYPE, "ANONYMOUS")
-        val isAuthorized = GroupAuthorizer(uuid).use {
-            it.authorize(session?.principal() ?: anonymous, acls)
-        }
+        val isAuthorized =
+            GroupAuthorizer(uuid).use {
+                it.authorize(session?.principal() ?: anonymous, acls)
+            }
 
         when (isAuthorized) {
             true -> log.debug("Authorization End - $authContext, status=authorized")
-            false -> log.error(
-                "${Monitoring.AUTHORIZATION_FAILED.txt} - $authContext, status=denied",
-            )
+            false ->
+                log.error(
+                    "${Monitoring.AUTHORIZATION_FAILED.txt} - $authContext, status=denied",
+                )
         }
 
         return isAuthorized

@@ -19,7 +19,6 @@ import java.util.concurrent.TimeUnit
  * NO test cases for this simple class
  */
 object LDAPCache {
-
     private data class Bind(val name: String, val other: String)
 
     private class BindCacheLoader : CacheLoader<Bind, Bind> {
@@ -40,20 +39,25 @@ object LDAPCache {
     init {
         val config = LDAPConfig.getByClasspath()
 
-        bindCache = Caffeine.newBuilder()
-            .maximumSize(1_000)
-            .expireAfterWrite(config.usrCacheExpire.toLong(), TimeUnit.MINUTES)
-            .build(BindCacheLoader())
+        bindCache =
+            Caffeine.newBuilder()
+                .maximumSize(1_000)
+                .expireAfterWrite(config.usrCacheExpire.toLong(), TimeUnit.MINUTES)
+                .build(BindCacheLoader())
 
-        groupCache = Caffeine.newBuilder()
-            .maximumSize(10_000)
-            .expireAfterWrite(config.grpCacheExpire.toLong(), TimeUnit.MINUTES)
-            .build(GroupCacheLoader())
+        groupCache =
+            Caffeine.newBuilder()
+                .maximumSize(10_000)
+                .expireAfterWrite(config.grpCacheExpire.toLong(), TimeUnit.MINUTES)
+                .build(GroupCacheLoader())
 
         log.info("Bind and group caches are initialized")
     }
 
-    fun userExists(userDN: String, pwd: String): Boolean =
+    fun userExists(
+        userDN: String,
+        pwd: String,
+    ): Boolean =
         when (bindCache.getIfPresent(Bind(userDN, pwd))) {
             is Bind -> {
                 log.debug("$userDN is cached")
@@ -62,7 +66,10 @@ object LDAPCache {
             else -> false
         }
 
-    fun userAdd(userDN: String, pwd: String): String =
+    fun userAdd(
+        userDN: String,
+        pwd: String,
+    ): String =
         try {
             (bindCache.get(Bind(userDN, pwd))?.other ?: "").also {
                 log.info("${Monitoring.AUTHENTICATION_CACHE_UPDATED.txt} for $userDN")
@@ -72,7 +79,11 @@ object LDAPCache {
             ""
         }
 
-    fun groupAndUserExists(groupName: String, userDN: String, uuid: String): Boolean =
+    fun groupAndUserExists(
+        groupName: String,
+        userDN: String,
+        uuid: String,
+    ): Boolean =
         when (groupCache.getIfPresent(Group(groupName, userDN))) {
             is Group -> {
                 log.debug("[$groupName,$userDN] is cached ($uuid)")
@@ -81,7 +92,11 @@ object LDAPCache {
             else -> false
         }
 
-    fun groupAndUserAdd(groupName: String, userDN: String, uuid: String): String =
+    fun groupAndUserAdd(
+        groupName: String,
+        userDN: String,
+        uuid: String,
+    ): String =
         try {
             (groupCache.get(Group(groupName, userDN))?.other ?: "").also {
                 log.info(
@@ -96,11 +111,13 @@ object LDAPCache {
 
     // for test purpose
 
-    fun invalidateAllBinds() = bindCache.invalidateAll().also {
-        log.info("Bind cache reset")
-    }
+    fun invalidateAllBinds() =
+        bindCache.invalidateAll().also {
+            log.info("Bind cache reset")
+        }
 
-    fun invalidateAllGroups() = groupCache.invalidateAll().also {
-        log.info("Group cachet reset")
-    }
+    fun invalidateAllGroups() =
+        groupCache.invalidateAll().also {
+            log.info("Group cachet reset")
+        }
 }

@@ -31,12 +31,13 @@ object LDAPAuthenticationSpec : Spek(
 
             // users from both nodes, ServiceAccounts and ApplAccounts
 
-            val refUsers = mapOf(
-                Pair("srvp01", "srvp01") to true,
-                Pair("srvc01", "srvc01") to true,
-                Pair("srvp01", "invalidpwd") to false,
-                Pair("invalid", "srvc01") to false,
-            )
+            val refUsers =
+                mapOf(
+                    Pair("srvp01", "srvp01") to true,
+                    Pair("srvc01", "srvc01") to true,
+                    Pair("srvp01", "invalidpwd") to false,
+                    Pair("invalid", "srvc01") to false,
+                )
 
             context("correct path to default YAML config") {
                 refUsers.forEach { user, result ->

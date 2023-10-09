@@ -36,11 +36,12 @@ object LDAPAuthorizationSpec : Spek(
                 LDAPCache.invalidateAllGroups()
             }
 
-            val refUserGroup = mapOf(
-                Pair("srvc01", listOf("rmy-01")) to 1,
-                Pair("srvp01", listOf("rmy-01", "rmy-02")) to 1,
-                Pair("srvp01", listOf("KC-tpc-02", "KP-tpc-02")) to 1,
-            )
+            val refUserGroup =
+                mapOf(
+                    Pair("srvc01", listOf("rmy-01")) to 1,
+                    Pair("srvp01", listOf("rmy-01", "rmy-02")) to 1,
+                    Pair("srvp01", listOf("KC-tpc-02", "KP-tpc-02")) to 1,
+                )
 
             context("correct path to default YAML config") {
                 refUserGroup.forEach { usrGrp, size ->

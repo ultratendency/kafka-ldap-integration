@@ -24,7 +24,6 @@ import javax.security.auth.login.AppConfigurationEntry
  *  /plain/internals/PlainServerCallbackHandler.java
  */
 class SimpleLDAPAuthentication : AuthenticateCallbackHandler {
-
     init {
         log.debug("${SimpleLDAPAuthentication::class.java.canonicalName} object created")
     }
@@ -47,7 +46,10 @@ class SimpleLDAPAuthentication : AuthenticateCallbackHandler {
             ?.let { throw UnsupportedCallbackException(it) }
     }
 
-    private fun authenticate(username: String, password: String): Boolean {
+    private fun authenticate(
+        username: String,
+        password: String,
+    ): Boolean {
         log.debug("Authentication Start - user=$username")
 
         // always check cache before ldap lookup
@@ -57,16 +59,24 @@ class SimpleLDAPAuthentication : AuthenticateCallbackHandler {
         return isAuthenticated
     }
 
-    private fun userInCache(userDNs: List<String>, password: String): Boolean =
-        userDNs.any { uDN -> LDAPCache.userExists(uDN, password) }
+    private fun userInCache(
+        userDNs: List<String>,
+        password: String,
+    ): Boolean = userDNs.any { uDN -> LDAPCache.userExists(uDN, password) }
 
-    private fun userCanBindInLDAP(userDNs: List<String>, password: String): Boolean =
+    private fun userCanBindInLDAP(
+        userDNs: List<String>,
+        password: String,
+    ): Boolean =
         LDAPAuthentication.init()
             .use { ldap -> ldap.canUserAuthenticate(userDNs, password) }
             .map { LDAPCache.userAdd(it.userDN, password) }
             .isNotEmpty()
 
-    private fun logAuthenticationResult(isAuthenticated: Boolean, username: String) {
+    private fun logAuthenticationResult(
+        isAuthenticated: Boolean,
+        username: String,
+    ) {
         if (isAuthenticated) {
             log.info(
                 "${Monitoring.AUTHENTICATION_SUCCESS.txt} - user=$username, status=authenticated",
@@ -86,7 +96,10 @@ class SimpleLDAPAuthentication : AuthenticateCallbackHandler {
         JAASContext.password = optionValue(jaasOptions, "password")
     }
 
-    private fun optionValue(jaasOptions: Map<String, *>?, option: String): String {
+    private fun optionValue(
+        jaasOptions: Map<String, *>?,
+        option: String,
+    ): String {
         val maybeValue = jaasOptions?.get(option)
         if (maybeValue is String) {
             return maybeValue

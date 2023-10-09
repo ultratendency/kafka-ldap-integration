@@ -12,8 +12,10 @@ import org.slf4j.LoggerFactory
  * A class verifying username and password through simple LDAP bind
  */
 class LDAPAuthentication private constructor(val config: LDAPConfig.Config) : LDAPBase(config) {
-
-    private fun bindOk(uDN: String, pwd: String): AuthenResult =
+    private fun bindOk(
+        uDN: String,
+        pwd: String,
+    ): AuthenResult =
         try {
             if (ldapConnection.bind(uDN, pwd).resultCode == ResultCode.SUCCESS) {
                 AuthenResult(true, uDN, "")
@@ -32,7 +34,10 @@ class LDAPAuthentication private constructor(val config: LDAPConfig.Config) : LD
             )
         }
 
-    override fun canUserAuthenticate(userDNs: List<String>, pwd: String): Set<AuthenResult> =
+    override fun canUserAuthenticate(
+        userDNs: List<String>,
+        pwd: String,
+    ): Set<AuthenResult> =
         if (!ldapConnection.isConnected) {
             log.error(
                 "${Monitoring.AUTHENTICATION_LDAP_FAILURE.txt} $userDNs and related password!",
@@ -58,9 +63,10 @@ class LDAPAuthentication private constructor(val config: LDAPConfig.Config) : LD
     companion object {
         private val log: Logger = LoggerFactory.getLogger(LDAPAuthentication::class.java)
 
-        fun init(configFile: String = ""): LDAPAuthentication = when (configFile.isEmpty()) {
-            true -> LDAPAuthentication(LDAPConfig.getByClasspath())
-            else -> LDAPAuthentication(LDAPConfig.getBySource(configFile))
-        }
+        fun init(configFile: String = ""): LDAPAuthentication =
+            when (configFile.isEmpty()) {
+                true -> LDAPAuthentication(LDAPConfig.getByClasspath())
+                else -> LDAPAuthentication(LDAPConfig.getBySource(configFile))
+            }
     }
 }

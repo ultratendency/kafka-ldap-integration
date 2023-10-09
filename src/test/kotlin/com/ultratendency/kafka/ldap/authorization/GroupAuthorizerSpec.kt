@@ -26,7 +26,10 @@ object GroupAuthorizerSpec : Spek(
             )
 
         // create describe allowance for ldap group
-        fun cDescribeAS(ldapGroup1: String, ldapGroup2: String): Set<Acl> =
+        fun cDescribeAS(
+            ldapGroup1: String,
+            ldapGroup2: String,
+        ): Set<Acl> =
             setOf(
                 Acl(
                     KafkaPrincipal(KafkaPrincipal.USER_TYPE, ldapGroup1),
@@ -67,28 +70,29 @@ object GroupAuthorizerSpec : Spek(
                 InMemoryLDAPServer.start()
             }
 
-            val refUserDescribeACL = mapOf(
-                Triple("srvp01", listOf("KC-tpc-01", "KP-tpc-01"), "tpc-01") to false,
-                Triple("srvc01", listOf("KC-tpc-01", "KP-tpc-01"), "tpc-01") to false,
+            val refUserDescribeACL =
+                mapOf(
+                    Triple("srvp01", listOf("KC-tpc-01", "KP-tpc-01"), "tpc-01") to false,
+                    Triple("srvc01", listOf("KC-tpc-01", "KP-tpc-01"), "tpc-01") to false,
+                    Triple("srvp01", listOf("KC-tpc-02", "KP-tpc-02"), "tpc-02") to true,
+                    Triple("srvc01", listOf("KC-tpc-02", "KP-tpc-02"), "tpc-02") to false,
+                    Triple("srvp01", listOf("KC-tpc-03", "KP-tpc-03"), "tpc-03") to false,
+                    Triple("srvc01", listOf("KC-tpc-03", "KP-tpc-03"), "tpc-03") to true,
+                )
 
-                Triple("srvp01", listOf("KC-tpc-02", "KP-tpc-02"), "tpc-02") to true,
-                Triple("srvc01", listOf("KC-tpc-02", "KP-tpc-02"), "tpc-02") to false,
+            val refUserWriteACL =
+                mapOf(
+                    Triple("srvp01", "KP-tpc-01", "tpc-01") to false,
+                    Triple("srvp01", "KP-tpc-02", "tpc-02") to true,
+                    Triple("srvp01", "KP-tpc-03", "tpc-03") to false,
+                )
 
-                Triple("srvp01", listOf("KC-tpc-03", "KP-tpc-03"), "tpc-03") to false,
-                Triple("srvc01", listOf("KC-tpc-03", "KP-tpc-03"), "tpc-03") to true,
-            )
-
-            val refUserWriteACL = mapOf(
-                Triple("srvp01", "KP-tpc-01", "tpc-01") to false,
-                Triple("srvp01", "KP-tpc-02", "tpc-02") to true,
-                Triple("srvp01", "KP-tpc-03", "tpc-03") to false,
-            )
-
-            val refUserReadACL = mapOf(
-                Triple("srvc01", "KC-tpc-01", "tpc-01") to false,
-                Triple("srvc01", "KC-tpc-02", "tpc-02") to false,
-                Triple("srvc01", "KC-tpc-03", "tpc-03") to true,
-            )
+            val refUserReadACL =
+                mapOf(
+                    Triple("srvc01", "KC-tpc-01", "tpc-01") to false,
+                    Triple("srvc01", "KC-tpc-02", "tpc-02") to false,
+                    Triple("srvc01", "KC-tpc-03", "tpc-03") to true,
+                )
 
             context("describe allowance") {
                 refUserDescribeACL.forEach { tr, result ->
