@@ -21,20 +21,23 @@ class LDAPAuthorization private constructor(
     private val uuid: String,
     val config: LDAPConfig.Config,
 ) : LDAPBase(config) {
-
     // In authorization context, needs to bind the connection before compare-match between group
     // and user due to no anonymous access allowed for LDAP operations like search, compare, ...
     private val connectionAndBindIsOk: Boolean
 
     init {
-        connectionAndBindIsOk = when {
-            JAASContext.username.isEmpty() || JAASContext.password.isEmpty() -> false
-            !ldapConnection.isConnected -> false
-            else -> doBind(config.toAdminDN(JAASContext.username), JAASContext.password)
-        }
+        connectionAndBindIsOk =
+            when {
+                JAASContext.username.isEmpty() || JAASContext.password.isEmpty() -> false
+                !ldapConnection.isConnected -> false
+                else -> doBind(config.toAdminDN(JAASContext.username), JAASContext.password)
+            }
     }
 
-    private fun doBind(userDN: String, pwd: String): Boolean =
+    private fun doBind(
+        userDN: String,
+        pwd: String,
+    ): Boolean =
         try {
             log.debug(
                 "Binding information for authorization fetched from JAAS config file [$userDN]",
@@ -102,7 +105,10 @@ class LDAPAuthorization private constructor(
             emptyList()
         }
 
-    override fun isUserMemberOfAny(userDNs: List<String>, groups: List<String>): Set<AuthorResult> {
+    override fun isUserMemberOfAny(
+        userDNs: List<String>,
+        groups: List<String>,
+    ): Set<AuthorResult> {
         if (!connectionAndBindIsOk) {
             log.error(
                 "${Monitoring.AUTHORIZATION_LDAP_FAILURE.txt} $userDNs membership in " +
@@ -111,12 +117,13 @@ class LDAPAuthorization private constructor(
             return emptySet()
         }
 
-        val matching = groups.flatMap { groupName ->
-            val groupDN = getGroupDN(groupName)
-            val members = getGroupMembers(groupDN)
-            log.info("Group $groupDN has members $members, checking for presence of $userDNs")
-            members.intersect(userDNs).map { uDN -> AuthorResult(groupName, uDN) }
-        }
+        val matching =
+            groups.flatMap { groupName ->
+                val groupDN = getGroupDN(groupName)
+                val members = getGroupMembers(groupDN)
+                log.info("Group $groupDN has members $members, checking for presence of $userDNs")
+                members.intersect(userDNs).map { uDN -> AuthorResult(groupName, uDN) }
+            }
 
         log.info("Checking $userDNs for membership in $groups, found: $matching")
         return matching.toSet()
@@ -125,7 +132,10 @@ class LDAPAuthorization private constructor(
     companion object {
         private val log: Logger = LoggerFactory.getLogger(LDAPAuthorization::class.java)
 
-        fun init(uuid: String, configFile: String = ""): LDAPAuthorization =
+        fun init(
+            uuid: String,
+            configFile: String = "",
+        ): LDAPAuthorization =
             when (configFile.isEmpty()) {
                 true -> LDAPAuthorization(uuid, LDAPConfig.getByClasspath())
                 else -> LDAPAuthorization(uuid, LDAPConfig.getBySource(configFile))

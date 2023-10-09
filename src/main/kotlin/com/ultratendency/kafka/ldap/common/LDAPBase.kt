@@ -16,16 +16,17 @@ import kotlin.system.measureTimeMillis
  * A base class for LDAPAuthentication and LDAPAuthorization
  */
 abstract class LDAPBase protected constructor(config: LDAPConfig.Config) : AutoCloseable {
-
-    private val connectOptions = LDAPConnectionOptions().apply {
-        connectTimeoutMillis = config.connTimeout
-    }
+    private val connectOptions =
+        LDAPConnectionOptions().apply {
+            connectTimeoutMillis = config.connTimeout
+        }
 
     // NB! - TrustAllTrustManager is too trusty, but good enough when inside corporate inner zone
-    protected val ldapConnection = LDAPConnection(
-        SSLUtil(TrustAllTrustManager()).createSSLSocketFactory(),
-        connectOptions,
-    )
+    protected val ldapConnection =
+        LDAPConnection(
+            SSLUtil(TrustAllTrustManager()).createSSLSocketFactory(),
+            connectOptions,
+        )
 
     init {
         // initialize LDAP connection
@@ -56,12 +57,17 @@ abstract class LDAPBase protected constructor(config: LDAPConfig.Config) : AutoC
 
     data class AuthenResult(val authenticated: Boolean, val userDN: String, val errMsg: String)
 
-    open fun canUserAuthenticate(userDNs: List<String>, pwd: String): Set<AuthenResult> = emptySet()
+    open fun canUserAuthenticate(
+        userDNs: List<String>,
+        pwd: String,
+    ): Set<AuthenResult> = emptySet()
 
     data class AuthorResult(val groupName: String, val userDN: String)
 
-    open fun isUserMemberOfAny(userDNs: List<String>, groups: List<String>): Set<AuthorResult> =
-        emptySet()
+    open fun isUserMemberOfAny(
+        userDNs: List<String>,
+        groups: List<String>,
+    ): Set<AuthorResult> = emptySet()
 
     companion object {
         private val log: Logger = LoggerFactory.getLogger(LDAPBase::class.java)

@@ -20,7 +20,6 @@ import java.nio.file.Paths
  * See test/resources/adconfig.yaml for 1:1 mapping between YAML and data class
  */
 object LDAPConfig {
-
     data class Config(
         val host: String,
         val port: Int,
@@ -39,25 +38,34 @@ object LDAPConfig {
     private val log = LoggerFactory.getLogger(LDAPConfig::class.java)
     private val cache: Config
 
-    val emptyConfig = Config(
-        "", 0, 0,
-        "", "",
-        "", "",
-        "", "", "",
-        0, 0,
-    )
+    val emptyConfig =
+        Config(
+            "",
+            0,
+            0,
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            0,
+            0,
+        )
 
     init {
-        cache = try {
-            loadConfig(ClassLoader.getSystemResource("ldapconfig.yaml") ?: URL(""))
-                .also {
-                    log.info("LDAPConfig for classpath is cached")
-                    log.info("ldap configuration values: $it")
-                }
-        } catch (e: Exception) {
-            log.error("${e.message} - authentication and authorization will fail! ")
-            emptyConfig
-        }
+        cache =
+            try {
+                loadConfig(ClassLoader.getSystemResource("ldapconfig.yaml") ?: URL(""))
+                    .also {
+                        log.info("LDAPConfig for classpath is cached")
+                        log.info("ldap configuration values: $it")
+                    }
+            } catch (e: Exception) {
+                log.error("${e.message} - authentication and authorization will fail! ")
+                emptyConfig
+            }
     }
 
     fun getBySource(configFile: String): Config {
@@ -83,21 +91,22 @@ object LDAPConfig {
 
         val errMsg = "Authentication and authorization will fail - "
         val defaultDir = Paths.get("").toAbsolutePath()
-        val filePath = try {
-            Paths.get(configFile.toURI())
-        } catch (e: IllegalArgumentException) {
-            log.error(errMsg + e.message)
-            defaultDir
-        } catch (e: FileSystemNotFoundException) {
-            log.error(errMsg + e.message)
-            defaultDir
-        } catch (e: SecurityException) {
-            log.error(errMsg + e.message)
-            defaultDir
-        } catch (e: Exception) {
-            log.error(errMsg + e.message)
-            defaultDir
-        }
+        val filePath =
+            try {
+                Paths.get(configFile.toURI())
+            } catch (e: IllegalArgumentException) {
+                log.error(errMsg + e.message)
+                defaultDir
+            } catch (e: FileSystemNotFoundException) {
+                log.error(errMsg + e.message)
+                defaultDir
+            } catch (e: SecurityException) {
+                log.error(errMsg + e.message)
+                defaultDir
+            } catch (e: Exception) {
+                log.error(errMsg + e.message)
+                defaultDir
+            }
 
         if (filePath == defaultDir) return emptyConfig
 
@@ -124,6 +133,7 @@ object LDAPConfig {
 
 // A couple of extension functions for Config
 fun LDAPConfig.Config.toUserDN(user: String) = "$usrUid=$user,$usrBaseDN".lowercase()
+
 fun LDAPConfig.Config.toAdminDN(user: String) = "$adminUid=$user,$adminBaseDN".lowercase()
 
 fun LDAPConfig.Config.toUserDNNodes(user: String) = listOf(toUserDN(user), toAdminDN(user))

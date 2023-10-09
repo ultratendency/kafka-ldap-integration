@@ -8,7 +8,6 @@ package com.ultratendency.kafka.ldap
  */
 
 enum class Monitoring(val txt: String) {
-
     LDAP_BASE_TIME("LDAP connection time"),
     LDAP_BASE_FAILURE("Authentication and authorization will fail! Exception when connecting to"),
 
