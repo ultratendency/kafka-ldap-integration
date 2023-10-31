@@ -3,7 +3,7 @@
 [![Gradle build](https://github.com/ultratendency/kafka-ldap-integration/actions/workflows/gradle.yml/badge.svg)](https://github.com/ultratendency/kafka-ldap-integration/actions/workflows/gradle.yml)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ultratendency_kafka-ldap-integration&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ultratendency_kafka-ldap-integration)
 
-Enhancing kafka 3.x with
+Enhancing Kafka 3.x with
 - customized SimpleLDAPAuthentication using LDAPS simple bind for authentication
 - In release 1.1.0 we have had support for authorization which is compatible to Kafka 2.8.1
 - The authorization feature was removed due to incompatibilites with latest Kafka versions (3.0 onwards) starting with release 2.0.0.
