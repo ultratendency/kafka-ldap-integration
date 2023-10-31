@@ -1,0 +1,24 @@
+---
+name: release-please
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-please:
+    name: release-please
+
+    runs-on: ubuntu-22.04
+
+    steps:
+      - uses: google-github-actions/release-please-action@v3.7.12
+        with:
+          release-type: java
+          extra-files: build.gradle
+          name: kafka-ldap-integration
