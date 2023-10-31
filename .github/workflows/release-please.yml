@@ -21,4 +21,4 @@ jobs:
         with:
           release-type: java
           extra-files: build.gradle
-          name: kafka-ldap-integration
+          package-name: kafka-ldap-integration
