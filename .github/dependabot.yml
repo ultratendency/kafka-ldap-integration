@@ -10,6 +10,8 @@ updates:
 
   - package-ecosystem: "github-actions"
     directory: "/"
+    commit-message:
+      prefix: "chore"
     schedule:
       interval: "daily"
       time: "07:00"
@@ -17,6 +19,8 @@ updates:
 
   - package-ecosystem: "docker"
     directory: "/"
+    commit-message:
+      prefix: "chore"
     schedule:
       interval: "daily"
       time: "07:00"
