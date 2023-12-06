@@ -1,4 +1,4 @@
-FROM openjdk:17-jdk-slim as build
+FROM openjdk:21-jdk-slim as build
 
 WORKDIR /kafka-plain-saslserver-2-ad
 
