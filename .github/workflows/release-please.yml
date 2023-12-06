@@ -18,7 +18,3 @@ jobs:
 
     steps:
       - uses: google-github-actions/release-please-action@v4.0.0
-        with:
-          release-type: java
-          extra-files: build.gradle
-          package-name: kafka-ldap-integration
