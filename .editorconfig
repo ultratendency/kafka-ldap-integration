@@ -23,7 +23,7 @@ ij_editorconfig_space_before_colon = false
 ij_editorconfig_space_before_comma = false
 ij_editorconfig_spaces_around_assignment_operators = true
 
-[{*.yml,README.md,LICENSE}]
+[{*.yml,README.md,LICENSE,CHANGELOG.md}]
 max_line_length = off
 
 [*.kt]

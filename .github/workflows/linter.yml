@@ -40,3 +40,4 @@ jobs:
           VALIDATE_KOTLIN_ANDROID: false
           VALIDATE_SHELL_SHFMT: false
           VALIDATE_BASH: false
+          VALIDATE_NATURAL_LANGUAGE: false
