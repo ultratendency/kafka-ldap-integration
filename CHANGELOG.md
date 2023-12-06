@@ -1,5 +1,22 @@
 # Changelog
 
+## [3.0.0](https://github.com/ultratendency/kafka-ldap-integration/compare/v2.2.0...v3.0.0) (2023-12-06)
+
+
+### ⚠ BREAKING CHANGES
+
+* Add support for Kafka 3.3.2 ([#358](https://github.com/ultratendency/kafka-ldap-integration/issues/358))
+
+### Features
+
+* Add support for Kafka 3.3.2 ([#358](https://github.com/ultratendency/kafka-ldap-integration/issues/358)) ([1fdab2c](https://github.com/ultratendency/kafka-ldap-integration/commit/1fdab2c6701790ed589c5f40f065987b3797f465))
+* Bump org.apache.kafka:kafka_2.13 from 3.3.2 to 3.6.0 ([#342](https://github.com/ultratendency/kafka-ldap-integration/issues/342)) ([a19997c](https://github.com/ultratendency/kafka-ldap-integration/commit/a19997c01223e4e0ee62844d5b5c76b6f6217f86))
+
+
+### Bug Fixes
+
+* **deps:** Bump org.apache.kafka:kafka_2.13 from 3.6.0 to 3.6.1 ([#406](https://github.com/ultratendency/kafka-ldap-integration/issues/406)) ([a0ceac7](https://github.com/ultratendency/kafka-ldap-integration/commit/a0ceac735155db4d3c6f9b32e78176d6b3ae8070))
+
 ## [2.1.1](https://github.com/ultratendency/kafka-ldap-integration/compare/v2.1.0...v2.1.1) (2023-12-06)
 
 ### Fixes
