@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.1](https://github.com/ultratendency/kafka-ldap-integration/compare/v2.1.1...v2.1.1) (2023-12-06)
+
+
+### Miscellaneous Chores
+
+* release 2.1.1 ([228d45f](https://github.com/ultratendency/kafka-ldap-integration/commit/228d45f6b274fc3ed3c820caef0af21465123fd0))
+
 ## [2.1.1](https://github.com/ultratendency/kafka-ldap-integration/compare/v2.1.0...v2.1.1) (2023-12-06)
 
 ### Fixes
