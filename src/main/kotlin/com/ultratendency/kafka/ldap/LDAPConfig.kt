@@ -6,6 +6,7 @@ import com.fasterxml.jackson.module.kotlin.KotlinFeature
 import com.fasterxml.jackson.module.kotlin.KotlinModule
 import org.slf4j.LoggerFactory
 import java.lang.IllegalArgumentException
+import java.net.URI
 import java.net.URL
 import java.nio.file.FileSystemNotFoundException
 import java.nio.file.Files
@@ -57,7 +58,7 @@ object LDAPConfig {
     init {
         cache =
             try {
-                loadConfig(ClassLoader.getSystemResource("ldapconfig.yaml") ?: URL(""))
+                loadConfig(ClassLoader.getSystemResource("ldapconfig.yaml") ?: URI("").toURL())
                     .also {
                         log.info("LDAPConfig for classpath is cached")
                         log.info("ldap configuration values: $it")
@@ -70,7 +71,7 @@ object LDAPConfig {
 
     fun getBySource(configFile: String): Config {
         val prefix = if (System.getProperty("os.name").startsWith("Windows")) "file:/" else "file:"
-        return loadConfig(URL(prefix + System.getProperty("user.dir") + "/" + configFile))
+        return loadConfig(URI(prefix + System.getProperty("user.dir") + "/" + configFile).toURL())
     }
 
     fun getByClasspath(): Config = cache
