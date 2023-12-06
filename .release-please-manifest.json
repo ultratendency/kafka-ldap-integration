@@ -1,0 +1,9 @@
+{
+  "release-type": "java",
+  "extra-files": "build.gradle",
+  "packages": {
+    ".": {
+      "package-name": "kafka-ldap-integration"
+    }
+  }
+}
