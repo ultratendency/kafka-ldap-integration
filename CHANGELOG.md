@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.1.1](https://github.com/ultratendency/kafka-ldap-integration/compare/v2.1.0...v2.1.1) (2023-12-06)
+
+### Fixes
+
+* fix(deps): Bump org.apache.kafka:kafka_2.13 from 3.6.0 to 3.6.1 by @dependabot in [#406](https://github.com/ultratendency/kafka-ldap-integration/pull/406)
+
+### Other Changes
+
+* chore(deps): Bump github/codeql-action from 2.22.5 to 2.22.6 by @dependabot in [#388](https://github.com/ultratendency/kafka-ldap-integration/pull/388)
+
 ## [2.1.0](https://github.com/ultratendency/kafka-ldap-integration/compare/v2.0.0...v2.1.0) (2023-10-31)
 
 ### Features
