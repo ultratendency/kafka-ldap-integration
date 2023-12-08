@@ -17,4 +17,4 @@ jobs:
     runs-on: ubuntu-22.04
 
     steps:
-      - uses: google-github-actions/release-please-action@v4.0.0
+      - uses: google-github-actions/release-please-action@v4.0.1
