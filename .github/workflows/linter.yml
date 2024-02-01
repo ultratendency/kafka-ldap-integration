@@ -31,7 +31,7 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Lint Code Base
-        uses: super-linter/super-linter@v5.7.2
+        uses: super-linter/super-linter@v6.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: main
