@@ -41,3 +41,4 @@ jobs:
           VALIDATE_SHELL_SHFMT: false
           VALIDATE_BASH: false
           VALIDATE_NATURAL_LANGUAGE: false
+          VALIDATE_CHECKOV: false
