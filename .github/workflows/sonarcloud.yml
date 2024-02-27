@@ -25,7 +25,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Set up JDK 17
+      - name: Set up JDK
         uses: actions/setup-java@v4.0.0
         with:
           java-version-file: .java-version
@@ -48,7 +48,7 @@ jobs:
       - name: Build
         run: ./gradlew build jacocoTestReport --info
 
-      - name: Set up JDK 17
+      - name: Set up JDK
         uses: actions/setup-java@v4.0.0
         with:
           java-version-file: .java-version
