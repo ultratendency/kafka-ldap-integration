@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.2.0](https://github.com/ultratendency/kafka-ldap-integration/compare/v2.1.1...v2.2.0) (2024-02-27)
+
+
+### Features
+
+* **deps:** bump org.apache.kafka:kafka_2.13 from 3.6.1 to 3.7.0 ([#475](https://github.com/ultratendency/kafka-ldap-integration/issues/475)) ([7c531c4](https://github.com/ultratendency/kafka-ldap-integration/commit/7c531c4f6ff2f3ce5bd2bbf4e9e34607d5488650))
+* **java:** Update Dockerfile to use Java 21 ([#422](https://github.com/ultratendency/kafka-ldap-integration/issues/422)) ([37d3fdb](https://github.com/ultratendency/kafka-ldap-integration/commit/37d3fdb10865017e3ba6009b9e9e66b39e46935b))
+* **java:** Update Java to version 21 ([#420](https://github.com/ultratendency/kafka-ldap-integration/issues/420)) ([8d141f4](https://github.com/ultratendency/kafka-ldap-integration/commit/8d141f4dcc229e997c2a711d37bd586cfb9fcfb7))
+
 ## [2.1.1](https://github.com/ultratendency/kafka-ldap-integration/compare/v2.1.0...v2.1.1) (2023-12-06)
 
 ### Fixes
