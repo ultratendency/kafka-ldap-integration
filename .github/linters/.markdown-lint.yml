@@ -2,10 +2,10 @@
 MD004: false                  # Unordered list style
 MD007:
   indent: 2                   # Unordered list indentation
+MD012: false                  # Multiple consecutive blank lines
 MD013:
   line_length: 400            # Line length 80 is far too short
-MD024:
-  allow_different_nesting: true
+MD024: false                  # Multiple headings with the same content
 MD026:
   punctuation: ".,;:!。，；:"  # List of not allowed
 MD029: false                  # Ordered list item prefix
