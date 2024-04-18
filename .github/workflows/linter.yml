@@ -44,3 +44,4 @@ jobs:
           VALIDATE_BASH: false
           VALIDATE_NATURAL_LANGUAGE: false
           VALIDATE_CHECKOV: false
+          VALIDATE_JSCPD: false
