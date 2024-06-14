@@ -50,6 +50,6 @@ jobs:
         distribution: 'temurin'
 
     - name: Build with Gradle
-      uses: gradle/actions/setup-gradle@v3.3.2
+      uses: gradle/actions/setup-gradle@v3.4.0
       with:
         arguments: build
