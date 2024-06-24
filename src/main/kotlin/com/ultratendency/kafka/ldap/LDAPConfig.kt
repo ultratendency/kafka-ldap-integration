@@ -80,7 +80,8 @@ object LDAPConfig {
         val mapper = ObjectMapper(YAMLFactory())
 
         mapper.registerModule(
-            KotlinModule.Builder()
+            KotlinModule
+                .Builder()
                 .withReflectionCacheSize(512)
                 .configure(KotlinFeature.NullToEmptyCollection, false)
                 .configure(KotlinFeature.NullToEmptyMap, false)
@@ -112,11 +113,11 @@ object LDAPConfig {
         if (filePath == defaultDir) return emptyConfig
 
         return try {
-            Files.newBufferedReader(filePath)
+            Files
+                .newBufferedReader(filePath)
                 .use {
                     mapper.readValue(it, Config::class.java)
-                }
-                .also {
+                }.also {
                     log.info("$configFile read")
                 }
         } catch (e: java.io.IOException) {

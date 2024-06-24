@@ -11,7 +11,9 @@ import org.slf4j.LoggerFactory
 /**
  * A class verifying username and password through simple LDAP bind
  */
-class LDAPAuthentication private constructor(val config: LDAPConfig.Config) : LDAPBase(config) {
+class LDAPAuthentication private constructor(
+    val config: LDAPConfig.Config,
+) : LDAPBase(config) {
     private fun bindOk(
         uDN: String,
         pwd: String,
@@ -55,8 +57,7 @@ class LDAPAuthentication private constructor(val config: LDAPConfig.Config) : LD
                             )
                         }
                     }
-                }
-                .filter { it.authenticated }
+                }.filter { it.authenticated }
                 .toSet()
         }
 
