@@ -19,13 +19,19 @@ import java.util.concurrent.TimeUnit
  * NO test cases for this simple class
  */
 object LDAPCache {
-    private data class Bind(val name: String, val other: String)
+    private data class Bind(
+        val name: String,
+        val other: String,
+    )
 
     private class BindCacheLoader : CacheLoader<Bind, Bind> {
         override fun load(key: Bind): Bind = key
     }
 
-    private data class Group(val name: String, val other: String)
+    private data class Group(
+        val name: String,
+        val other: String,
+    )
 
     private class GroupCacheLoader : CacheLoader<Group, Group> {
         override fun load(key: Group): Group = key
@@ -40,13 +46,15 @@ object LDAPCache {
         val config = LDAPConfig.getByClasspath()
 
         bindCache =
-            Caffeine.newBuilder()
+            Caffeine
+                .newBuilder()
                 .maximumSize(1_000)
                 .expireAfterWrite(config.usrCacheExpire.toLong(), TimeUnit.MINUTES)
                 .build(BindCacheLoader())
 
         groupCache =
-            Caffeine.newBuilder()
+            Caffeine
+                .newBuilder()
                 .maximumSize(10_000)
                 .expireAfterWrite(config.grpCacheExpire.toLong(), TimeUnit.MINUTES)
                 .build(GroupCacheLoader())

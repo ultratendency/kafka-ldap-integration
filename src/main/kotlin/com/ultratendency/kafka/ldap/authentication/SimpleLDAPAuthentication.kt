@@ -42,7 +42,8 @@ class SimpleLDAPAuthentication : AuthenticateCallbackHandler {
             plainCB.authenticated(authenticate(username, password))
         }
 
-        callbacks?.other<NameCallback, PlainAuthenticateCallback>()
+        callbacks
+            ?.other<NameCallback, PlainAuthenticateCallback>()
             ?.let { throw UnsupportedCallbackException(it) }
     }
 
@@ -68,7 +69,8 @@ class SimpleLDAPAuthentication : AuthenticateCallbackHandler {
         userDNs: List<String>,
         password: String,
     ): Boolean =
-        LDAPAuthentication.init()
+        LDAPAuthentication
+            .init()
             .use { ldap -> ldap.canUserAuthenticate(userDNs, password) }
             .map { LDAPCache.userAdd(it.userDN, password) }
             .isNotEmpty()

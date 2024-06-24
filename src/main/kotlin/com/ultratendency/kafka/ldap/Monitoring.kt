@@ -7,7 +7,9 @@ package com.ultratendency.kafka.ldap
  * Thus, change of text in Monitoring require corresponding change in kibana
  */
 
-enum class Monitoring(val txt: String) {
+enum class Monitoring(
+    val txt: String,
+) {
     LDAP_BASE_TIME("LDAP connection time"),
     LDAP_BASE_FAILURE("Authentication and authorization will fail! Exception when connecting to"),
 

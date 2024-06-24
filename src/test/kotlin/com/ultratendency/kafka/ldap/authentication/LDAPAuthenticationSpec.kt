@@ -45,7 +45,8 @@ object LDAPAuthenticationSpec : Spek(
                         val src = "src/test/resources/ldapconfig.yaml"
                         val userDNs = LDAPConfig.getBySource(src).toUserDNNodes(user.first)
 
-                        LDAPAuthentication.init(src)
+                        LDAPAuthentication
+                            .init(src)
                             .canUserAuthenticate(userDNs, user.second)
                             .isNotEmpty() shouldBeEqualTo result
                     }
@@ -57,7 +58,8 @@ object LDAPAuthenticationSpec : Spek(
                     it("should return $result for user ${user.first} with pwd ${user.second}") {
                         val userDNs = LDAPConfig.getByClasspath().toUserDNNodes(user.first)
 
-                        LDAPAuthentication.init()
+                        LDAPAuthentication
+                            .init()
                             .canUserAuthenticate(userDNs, user.second)
                             .isNotEmpty() shouldBeEqualTo result
                     }
