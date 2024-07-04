@@ -11,14 +11,11 @@ jobs:
   build:
     name: Gradle Package
 
-    # If the PR is coming from a fork (pull_request_target), ensure it's opened by "dependabot[bot]"
-    # or "github-actions[bot]".
+    # If the PR is coming from a fork (pull_request_target), ensure it's opened by "dependabot[bot]".
     # Otherwise, clone it normally.
     if: |
         (github.event_name == 'pull_request_target' && github.actor == 'dependabot[bot]') ||
-        (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]') ||
-        (github.event_name == 'pull_request_target' && github.actor == 'github-actions[bot]') ||
-        (github.event_name != 'pull_request_target' && github.actor != 'github-actions[bot]')
+        (github.event_name != 'pull_request_target' && github.actor != 'dependabot[bot]')
     runs-on: ubuntu-22.04
 
     permissions:
@@ -47,15 +44,11 @@ jobs:
         server-id: github
         settings-path: ${{ github.workspace }}
 
-    - name: Build with Gradle
+    - name: Setup Gradle Gradle
       uses: gradle/actions/setup-gradle@v3.4.2
-      with:
-        arguments: build
+
+    - name: Build with Gradle
+      run: ./gradlew build
 
     - name: Publish to GitHub Packages
-      uses: gradle/actions/setup-gradle@v3.4.2
-      with:
-        arguments: publish
-      env:
-        USERNAME: ${{ github.actor }}
-        TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: ./gradlew publish
