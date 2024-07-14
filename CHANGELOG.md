@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.3](https://github.com/ultratendency/kafka-ldap-integration/compare/v2.2.2...v2.2.3) (2024-07-14)
+
+
+### Bug Fixes
+
+* **deps:** Bump jackson_version from 2.17.1 to 2.17.2 ([#589](https://github.com/ultratendency/kafka-ldap-integration/issues/589)) ([dcc13ce](https://github.com/ultratendency/kafka-ldap-integration/commit/dcc13ce19022e2df12041cbfa69e98d4b06378a8))
+
 ## [2.2.2](https://github.com/ultratendency/kafka-ldap-integration/compare/v2.2.1...v2.2.2) (2024-07-04)
 
 
