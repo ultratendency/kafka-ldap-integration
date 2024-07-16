@@ -45,7 +45,7 @@ jobs:
         settings-path: ${{ github.workspace }}
 
     - name: Setup Gradle Gradle
-      uses: gradle/actions/setup-gradle@v3.4.2
+      uses: gradle/actions/setup-gradle@v3.5.0
 
     - name: Build with Gradle
       run: ./gradlew build
