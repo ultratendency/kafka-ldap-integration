@@ -12,7 +12,7 @@ buildscript {
     ext.versions_version = '0.51.0'
     ext.sonarqube_version = '5.1.0.4882'
     ext.slf4j_version = '2.0.16'
-    ext.junit_version = '5.11.0'
+    ext.junit_version = '5.11.1'
     ext.junit_platform_launcher_version = '1.11.1'
 
     ext.org_jetbrains_kotlin = 'org.jetbrains.kotlin'
