@@ -41,3 +41,4 @@ jobs:
           VALIDATE_NATURAL_LANGUAGE: false
           VALIDATE_CHECKOV: false
           VALIDATE_JSCPD: false
+          VALIDATE_MARKDOWN_PRETTIER: false
