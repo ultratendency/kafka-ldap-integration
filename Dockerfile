@@ -7,7 +7,7 @@ COPY . .
 RUN ./gradlew build test &&\
     ./gradlew shadowJar -x test
 
-FROM confluentinc/cp-kafka:7.7.1
+FROM confluentinc/cp-kafka:7.7.2
 
 COPY --from=build /kafka-plain-saslserver-2-ad/build/libs/kafka-plain-saslserver-2-ad-* \
                   /usr/share/java/kafka
