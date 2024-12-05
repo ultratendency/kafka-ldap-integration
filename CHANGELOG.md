@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.4.1](https://github.com/ultratendency/kafka-ldap-integration/compare/v2.4.0...v2.4.1) (2024-12-05)
+
+
+### Bug Fixes
+
+* **deps:** bump com.unboundid:unboundid-ldapsdk from 7.0.1 to 7.0.2 ([#700](https://github.com/ultratendency/kafka-ldap-integration/issues/700)) ([1711d09](https://github.com/ultratendency/kafka-ldap-integration/commit/1711d093cb397041f1aa1c0ec811d7b00d809197))
+
 ## [2.4.0](https://github.com/ultratendency/kafka-ldap-integration/compare/v2.3.0...v2.4.0) (2024-11-10)
 
 

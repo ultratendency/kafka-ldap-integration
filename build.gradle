@@ -30,7 +30,7 @@ plugins {
 }
 
 group 'com.ultratendency.kafka.ldap'
-version '2.4.0' // x-release-please-version
+version '2.4.1' // x-release-please-version
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
