@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/ultratendency/kafka-ldap-integration/compare/v2.4.1...v3.0.0) (2025-03-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deps:** bump org.apache.kafka:kafka_2.13 from 3.9.0 to 4.0.0 ([#740](https://github.com/ultratendency/kafka-ldap-integration/issues/740))
+
+### break
+
+* **deps:** bump org.apache.kafka:kafka_2.13 from 3.9.0 to 4.0.0 ([#740](https://github.com/ultratendency/kafka-ldap-integration/issues/740)) ([09432e1](https://github.com/ultratendency/kafka-ldap-integration/commit/09432e1bf2d5b0cb90c1d10d0cb97cc763765fac))
+
 ## [2.4.1](https://github.com/ultratendency/kafka-ldap-integration/compare/v2.4.0...v2.4.1) (2024-12-05)
 
 
