@@ -3,7 +3,7 @@ buildscript {
     ext.scala_version = '2.13'
     ext.kotlin_version = '2.1.21'
     ext.unboundid_version = '7.0.2'
-    ext.caffeine_version = '3.2.0'
+    ext.caffeine_version = '3.2.1'
     ext.jackson_version = '2.19.0'
     ext.spek_version = '2.0.19'
     ext.kluent_version = '1.73'
