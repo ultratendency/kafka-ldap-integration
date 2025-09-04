@@ -1,5 +1,5 @@
 buildscript {
-    ext.kafka_version = '4.0.0'
+    ext.kafka_version = '4.1.0'
     ext.scala_version = '2.13'
     ext.kotlin_version = '2.2.10'
     ext.unboundid_version = '7.0.3'
