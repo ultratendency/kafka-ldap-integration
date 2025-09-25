@@ -9,7 +9,7 @@ buildscript {
     ext.kluent_version = '1.73'
     ext.kotlinter_version = '5.2.0'
     ext.shadow_version = '8.1.1'
-    ext.versions_version = '0.52.0'
+    ext.versions_version = '0.53.0'
     ext.sonarqube_version = '6.3.1.5724'
     ext.slf4j_version = '2.0.17'
     ext.junit_version = '5.13.4'
