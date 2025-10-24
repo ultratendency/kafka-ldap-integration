@@ -17,6 +17,6 @@ jobs:
     runs-on: ubuntu-24.04
 
     steps:
-      - uses: googleapis/release-please-action@v4.3.0
+      - uses: googleapis/release-please-action@v4.4.0
         with:
           token: ${{ secrets.PAT }}
