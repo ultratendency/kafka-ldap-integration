@@ -1,4 +1,4 @@
-FROM openjdk:21-jdk-slim AS build
+FROM eclipse-temurin:21.0.1_12-jdk-alpine AS build
 
 WORKDIR /kafka-plain-saslserver-2-ad
 
