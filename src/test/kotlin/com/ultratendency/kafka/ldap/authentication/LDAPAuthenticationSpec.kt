@@ -8,22 +8,20 @@ import org.amshove.kluent.shouldBeEqualTo
 import org.spekframework.spek2.Spek
 import org.spekframework.spek2.style.specification.describe
 
+/**
+ * Test scope
+ * - Test correct and incorrect users in ServiceAccounts
+ * - Test correct and incorrect users in ApplAccounts
+ *
+ * Good enough testing
+ *
+ * NOT testing a lot of different wrong configurations in yaml
+ * invalid host, port, usrBaseDN, usrUid, ...
+ * Those will return false anyway
+ */
 object LDAPAuthenticationSpec : Spek(
     {
         describe("LDAPAuthentication class test specifications") {
-
-            /**
-             * Test scope
-             * - Test correct and incorrect users in ServiceAccounts
-             * - Test correct and incorrect users in ApplAccounts
-             *
-             * Good enough testing
-             *
-             * NOT testing a lot of different wrong configurations in yaml
-             * invalid host, port, usrBaseDN, usrUid, ...
-             * Those will return false anyway
-             */
-
             beforeGroup {
                 InMemoryLDAPServer.start()
                 LDAPCache.invalidateAllBinds()
