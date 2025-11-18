@@ -48,12 +48,6 @@ jobs:
       - name: Build
         run: ./gradlew build jacocoTestReport --info
 
-      - name: Set up JDK
-        uses: actions/setup-java@v5.0.0
-        with:
-          java-version-file: .java-version
-          distribution: "temurin"
-
       - name: Analyze
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
