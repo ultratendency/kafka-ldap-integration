@@ -33,7 +33,7 @@ group 'com.ultratendency.kafka.ldap'
 version '3.1.1' // x-release-please-version
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_21
+    sourceCompatibility = JavaVersion.VERSION_24
 }
 
 test {
@@ -75,10 +75,10 @@ configurations.all {
 }
 
 compileKotlin {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_21.toString()
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_24.toString()
 }
 compileTestKotlin {
-    kotlinOptions.jvmTarget = JavaVersion.VERSION_21.toString()
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_24.toString()
 }
 
 test {
