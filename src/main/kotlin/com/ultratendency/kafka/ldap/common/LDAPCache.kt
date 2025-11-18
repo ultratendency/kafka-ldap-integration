@@ -71,7 +71,10 @@ object LDAPCache {
                 log.debug("$userDN is cached")
                 true
             }
-            else -> false
+
+            else -> {
+                false
+            }
         }
 
     fun userAdd(
@@ -97,7 +100,10 @@ object LDAPCache {
                 log.debug("[$groupName,$userDN] is cached ($uuid)")
                 true
             }
-            else -> false
+
+            else -> {
+                false
+            }
         }
 
     fun groupAndUserAdd(
