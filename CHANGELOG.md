@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/ultratendency/kafka-ldap-integration/compare/v3.1.1...v3.2.0) (2025-11-18)
+
+
+### Features
+
+* **deps:** bump eclipse-temurin from 21.0.1_12-jdk-alpine to 24.0.2_12-jdk-alpine ([#834](https://github.com/ultratendency/kafka-ldap-integration/issues/834)) ([4e0299c](https://github.com/ultratendency/kafka-ldap-integration/commit/4e0299c8858969127a5f7b09f3ce780bf2744ff8))
+
 ## [3.1.1](https://github.com/ultratendency/kafka-ldap-integration/compare/v3.1.0...v3.1.1) (2025-11-18)
 
 
