@@ -29,8 +29,8 @@ plugins {
     id 'java'
 }
 
-group 'com.ultratendency.kafka.ldap'
-version '3.2.0' // x-release-please-version
+group = 'com.ultratendency.kafka.ldap'
+version = '3.2.0' // x-release-please-version
 
 java {
     sourceCompatibility = JavaVersion.VERSION_24
@@ -89,8 +89,6 @@ test {
         events 'passed', 'skipped', 'failed'
     }
 }
-
-
 
 shadowJar {
     archiveBaseName = "${project.name}-$scala_version-$kafka_version"
