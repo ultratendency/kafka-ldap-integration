@@ -4,7 +4,7 @@ buildscript {
     ext.kotlin_version = '2.3.10'
     ext.unboundid_version = '7.0.4'
     ext.caffeine_version = '3.2.3'
-    ext.jackson_version = '2.21.0'
+    ext.jackson_version = '2.21.1'
     ext.spek_version = '2.0.19'
     ext.kluent_version = '1.73'
     ext.kotlinter_version = '5.4.2'
