@@ -1,5 +1,22 @@
 # Changelog
 
+## [3.5.0](https://github.com/ultratendency/kafka-ldap-integration/compare/v3.4.0...v3.5.0) (2026-07-02)
+
+
+### Features
+
+* **deps:** bump docker/build-push-action from 7.1.0 to 7.2.0 ([#933](https://github.com/ultratendency/kafka-ldap-integration/issues/933)) ([4a6632e](https://github.com/ultratendency/kafka-ldap-integration/commit/4a6632ed313aa31c1219f3fb91580b53301f8224))
+* **deps:** bump docker/login-action from 4.1.0 to 4.2.0 ([b109604](https://github.com/ultratendency/kafka-ldap-integration/commit/b1096047d9b04c802657d64d8a670859bb698195))
+* **deps:** bump docker/metadata-action from 6.0.0 to 6.1.0 ([#935](https://github.com/ultratendency/kafka-ldap-integration/issues/935)) ([ced22cb](https://github.com/ultratendency/kafka-ldap-integration/commit/ced22cbd93f5a8aec3bd9565b4dc817792419eeb))
+* **deps:** bump docker/setup-buildx-action from 4.0.0 to 4.1.0 ([f344595](https://github.com/ultratendency/kafka-ldap-integration/commit/f344595bf50f3b862a91a7a2059c77336fe6a5c9))
+
+
+### Bug Fixes
+
+* **deps:** bump actions/setup-java from 5.3.0 to 5.4.0 ([#954](https://github.com/ultratendency/kafka-ldap-integration/issues/954)) ([0b08d19](https://github.com/ultratendency/kafka-ldap-integration/commit/0b08d19a02c9f575e608a2fd6f1d98f0201c54dc))
+* **deps:** bump com.gradleup.shadow from 9.4.2 to 9.4.3 ([#955](https://github.com/ultratendency/kafka-ldap-integration/issues/955)) ([63f8aa4](https://github.com/ultratendency/kafka-ldap-integration/commit/63f8aa4334138f85f26061ac0bcbac5b46bf48bf))
+* **deps:** bump org.apache.kafka:kafka_2.13 from 4.3.0 to 4.3.1 ([#953](https://github.com/ultratendency/kafka-ldap-integration/issues/953)) ([a4376f1](https://github.com/ultratendency/kafka-ldap-integration/commit/a4376f1ac10e0f5c317ecd8177d2ea3c7e500304))
+
 ## [3.4.0](https://github.com/ultratendency/kafka-ldap-integration/compare/v3.3.0...v3.4.0) (2026-05-21)
 
 
