@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.6.0](https://github.com/ultratendency/kafka-ldap-integration/compare/v3.5.0...v3.6.0) (2026-10-30)
+
+
+### Features
+
+* **deps:** bump gradle-wrapper from 9.8.1 to 9.8.2 ([8463bfa](https://github.com/ultratendency/kafka-ldap-integration/commit/8463bfa0ce8efff45196e22f7804e05e7b7a6a8a))
+* **deps:** bump jackson_version from 2.22.3 to 2.22.4 ([#1025](https://github.com/ultratendency/kafka-ldap-integration/issues/1025)) ([fe707c3](https://github.com/ultratendency/kafka-ldap-integration/commit/fe707c35cd39c5b30d214a18c63ea95014e68a1f))
+
 ## [3.5.0](https://github.com/ultratendency/kafka-ldap-integration/compare/v3.4.0...v3.5.0) (2026-10-19)
 
 
