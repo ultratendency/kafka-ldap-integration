@@ -57,8 +57,9 @@ dependencies {
 
     implementation "com.github.ben-manes.caffeine:caffeine:$caffeine_version"
 
-    // Provided by the Kafka broker at runtime. compileOnly keeps them (and Kafka's transitive deps such as
-    // Scala, log4j2, lz4, snappy) out of the shadow JAR; a bundled copy shadows the broker's own classes.
+    // Provided by the Kafka broker at runtime. compileOnly keeps them (and Kafka's
+    // transitive deps such as Scala, log4j2, lz4, snappy) out of the shadow JAR;
+    // a bundled copy shadows the broker's own classes.
     compileOnly "org.apache.kafka:kafka_$scala_version:$kafka_version"
     compileOnly "org.slf4j:slf4j-api:$slf4j_version"
     testImplementation "org.apache.kafka:kafka_$scala_version:$kafka_version"
